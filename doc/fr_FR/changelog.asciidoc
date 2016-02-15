@@ -1,0 +1,7 @@
+==== Version 1.1
+
+Passage au système de dépendances 2.0
+
+==== Version 1
+
+Création du plugin

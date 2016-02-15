@@ -1,0 +1,122 @@
+
+Voici la liste des évènements que peux envoyer apcupsd
+
+[panel,primary]
+.annoyme
+--
+When a shutdown is scheduled, and the time specified on the ANNOYME directive in the apcupsd.conf file expires, this event is generated.
+--
+
+[panel,primary]
+.changeme
+--
+When apcupsd detects that the mains are on, but the battery is not functioning correctly, this event is generated. It is repeated every x hours.
+--
+
+[panel,primary]
+.commfailure
+--
+This event is generated each time the communications line with the computer is severed. This event is not detected on dumb signaling UPSes.
+--
+
+[panel,primary]
+.commok
+--
+After a commfailure event is issued, when the communications to the computer is re-established, this event will be generated.
+--
+
+[panel,primary]
+.doreboot
+--
+This event is depreciated and should not be used.
+--
+
+[panel,primary]
+.doshutdown
+--
+When the UPS is running on batteries and one of the limits expires (time, run, load), this event is generated to cause the machine to shutdown.
+--
+
+[panel,primary]
+.emergency
+--
+Called for an emergency system shutdown. (What triggers such a shutdown is unclear...) After completing this event, apcupsd will immediately initiate a doshutdown event.
+--
+
+[panel,primary]
+.failing
+--
+This event is generated when the UPS is running on batteries and the battery power is exhausted. The event following this one will be a shutdown.
+--
+
+[panel,primary]
+.loadlimit
+--
+This event is generated when the battery charge is below the low limit specified in the apcupsd.conf file. After completing this event, apcupsd will immediately initiate a doshutdown event.
+--
+
+[panel,primary]
+.powerout
+--
+This event is generated immediately when apcupsd detects that the UPS has switched to batteries. It may be due to a short powerfailure, an automatic selftest of the UPS, or a longer powerfailure.
+--
+
+[panel,primary]
+.onbattery
+--
+This event is generated 5 or 6 seconds after an initial powerfailure is detected. It means that apcupsd definitely considers the UPS to be on batteries. The onset of this event can be delayed by the ONBATTERYDELAY apcupsd.conf configuration directive.
+--
+
+[panel,primary]
+.offbattery
+--
+This event is generated when the mains return only if the onbattery event has been generated.
+--
+
+[panel,primary]
+.mainsback
+--
+This event is generated when the mains power returns after a powerout condition. The shutdown event may or may not have been generated depending on the parameters you have defined and the length of the power outage.
+--
+
+[panel,primary]
+.remotedown
+--
+This event is generated on a slave machine when it detects either that the master has shutdown, or that a onbattery situation exists and the communications line has been severed.
+--
+
+[panel,primary]
+.runlimit
+--
+This event is generated when the MINUTES value defined in the apcupsd.conf file expires while in a power fail condition. The MINUTES is the remaining runtime as internally calculated by the UPS and monitored by apcupsd. After completing this event, apcupsd will immediately initiate a doshutdown event.
+--
+
+[panel,primary]
+.timeout
+--
+This event is generated when the TIMEOUT value defined in the apcupsd.conf file expires while in a power fail condition. It indicates that the total time in a power failure has been exceeded and the machine should be shutdown. After completing this event, apcupsd will immediately initiate a doshutdown event.
+--
+
+[panel,primary]
+.startselftest
+--
+This event is generated when apcupsd detects a self test by the UPS. Normally due to the 6 second onbattery delay default time, self test events are not detected.
+--
+
+[panel,primary]
+.endselftest
+--
+This event is generated when the end of a self test is detected.
+--
+
+[panel,primary]
+.battdetach
+--
+This event is generated when apcupsd detects that the UPS battery has been disconnected.
+--
+
+[panel,primary]
+.battattach
+--
+This event is generated when apcupsd detects that the UPS battery has been reconnected after a battdetach event.
+--

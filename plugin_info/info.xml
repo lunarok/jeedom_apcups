@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<info>
+    <id>apcups</id>
+    <name>Onduleur (APC)</name>
+    <licence>AGPL</licence>
+    <author>lunarok</author>
+    <require>2.1</require>
+    <category>monitoring</category>
+    <hasDependency>1</hasDependency>
+</info>
