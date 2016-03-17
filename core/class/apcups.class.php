@@ -20,10 +20,8 @@
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class apcups extends eqLogic {
-  /*     * *************************Attributs****************************** */
 
-
-  /*     * ***********************Methode static*************************** */
+  public static $_widgetPossibility = array('custom' => true);
 
   public static function health() {
     $return = array();
@@ -76,13 +74,6 @@ class apcups extends eqLogic {
             $cmd->event($value);
           }
         }
-        $mc = cache::byKey('apcupsWidgetdashboard' . $apcups->getId());
-        $mc->remove();
-        $mc = cache::byKey('apcupsWidgetmobile' . $apcups->getId());
-        $mc->remove();
-        $apcups->toHtml('dashboard');
-        $apcups->toHtml('mobile');
-        $apcups->refreshWidget();
       }
     }
   }
@@ -99,17 +90,6 @@ class apcups extends eqLogic {
     }
   }
 
-  public function postInsert() {
-
-  }
-
-  /*     * **********************Getteur Setteur*************************** */
-  /*public function postUpdate() {
-  foreach (eqLogic::byType('apcups') as $apcups) {
-  $apcups->getInformations();
-}
-}*/
-
 public function preSave() {
   $this->setLogicalId($this->getConfiguration('addr'));
 
@@ -118,8 +98,6 @@ public function preSave() {
 }
 
 public function postSave() {
-  //$this->setLogicalId($this->getConfiguration('addr'));
-
   $apcupsCmd = $this->getCmd(null, 'status');
   if (!is_object($apcupsCmd)) {
     log::add('apcups', 'debug', 'Création status');
@@ -256,53 +234,24 @@ public function postSave() {
 }
 
 public function toHtml($_version = 'dashboard') {
-  $mc = cache::byKey('apcupsWidget' . $_version . $this->getId());
-  if ($mc->getValue() != '') {
-    return $mc->getValue();
+  $replace = $this->preToHtml($_version);
+  if (!is_array($replace)) {
+    return $replace;
   }
-  if ($this->getIsEnable() != 1) {
+  $version = jeedom::versionAlias($_version);
+  if ($this->getDisplay('hideOn' . $version) == 1) {
     return '';
-  }
-  if (!$this->hasRight('r')) {
-    return '';
-  }
-  $_version = jeedom::versionAlias($_version);
-  if ($this->getDisplay('hideOn' . $_version) == 1) {
-    return '';
-  }
-  $vcolor = 'cmdColor';
-  if ($_version == 'mobile') {
-    $vcolor = 'mcmdColor';
-  }
-  $parameters = $this->getDisplay('parameters');
-  $cmdColor = ($this->getPrimaryCategory() == '') ? '' : jeedom::getConfiguration('eqLogic:category:' . $this->getPrimaryCategory() . ':' . $vcolor);
-  if (is_array($parameters) && isset($parameters['background_cmd_color'])) {
-    $cmdColor = $parameters['background_cmd_color'];
   }
 
-  if (($_version == 'dview' || $_version == 'mview') && $this->getDisplay('doNotShowNameOnView') == 1) {
-    $replace['#name#'] = '';
-    $replace['#object_name#'] = (is_object($object)) ? $object->getName() : '';
-  }
-  if (($_version == 'mobile' || $_version == 'dashboard') && $this->getDisplay('doNotShowNameOnDashboard') == 1) {
-    $replace['#name#'] = '<br/>';
-    $replace['#object_name#'] = (is_object($object)) ? $object->getName() : '';
-  }
-
-  if (is_array($parameters)) {
-    foreach ($parameters as $key => $value) {
-      $replace['#' . $key . '#'] = $value;
+  foreach ($this->getCmd('info') as $cmd) {
+    $replace['#' . $cmd->getLogicalId() . '_history#'] = '';
+    $replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
+    $replace['#' . $cmd->getLogicalId() . '#'] = $cmd->execCmd();
+    $replace['#' . $cmd->getLogicalId() . '_collect#'] = $cmd->getCollectDate();
+    if ($cmd->getIsHistorized() == 1) {
+      $replace['#' . $cmd->getLogicalId() . '_history#'] = 'history cursor';
     }
   }
-  $background=$this->getBackgroundColor($_version);
-  $replace = array(
-    '#name#' => $this->getName(),
-    '#id#' => $this->getId(),
-    '#background_color#' => $background,
-    '#height#' => $this->getDisplay('height', 'auto'),
-    '#width#' => $this->getDisplay('width', '200px'),
-    '#eqLink#' => ($this->hasRight('w')) ? $this->getLinkToConfiguration() : '#',
-  );
 
   $bcharge = $this->getCmd(null, 'bcharge');
   $replace['#battery_charge#'] = is_object($bcharge) ? $bcharge->getConfiguration('value') : '';
@@ -335,23 +284,8 @@ public function toHtml($_version = 'dashboard') {
   $model = $this->getCmd(null, 'model');
   $replace['#ups_model#'] = is_object($model) ? $model->getConfiguration('value') : '';
 
-  $replace['#name#'] = $this->getName();
-  $replace['#id#'] = $this->getId();
-  $replace['#collectDate#'] = '';
-  $replace['#background_color#'] = $this->getBackgroundColor(jeedom::versionAlias($_version));
-  $replace['#eqLink#'] = $this->getLinkToConfiguration();
 
-  $parameters = $this->getDisplay('parameters');
-  if (is_array($parameters)) {
-    foreach ($parameters as $key => $value) {
-      $replace['#' . $key . '#'] = $value;
-      log::add('apcups', 'debug', $key . ' ' . $value);
-    }
-  } else {
-    log::add('apcups', 'debug', 'widget param');
-  }
   $html = template_replace($replace, getTemplate('core', $_version, 'apcups', 'apcups'));
-  cache::set('apcupsWidget' . $_version . $this->getId(), $html, 0);
   return $html;
 }
 
