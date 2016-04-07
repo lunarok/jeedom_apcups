@@ -285,7 +285,8 @@ public function toHtml($_version = 'dashboard') {
   $replace['#ups_model#'] = is_object($model) ? $model->getConfiguration('value') : '';
 
 
-  $html = template_replace($replace, getTemplate('core', $_version, 'apcups', 'apcups'));
+  $html = template_replace($replace, getTemplate('core', $version, 'apcups', 'apcups'));
+  cache::set('apcupsWidget' . $_version . $this->getId(), $html, 0);
   return $html;
 }
 
