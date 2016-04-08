@@ -294,10 +294,10 @@ public function getInformations() {
   foreach ($this->getCmd('info') as $cmd) {
     $value = $cmd->execute();
     if ($value != $cmd->execCmd()) {
-      $cmd->setCollectDate('');
       $cmd->event($value);
     }
   }
+  $this->refreshWidget();
 }
 /*public function getInformations() {
 $addr = $this->getConfiguration('addr', '');
