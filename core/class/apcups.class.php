@@ -275,7 +275,7 @@ class apcups extends eqLogic {
     $replace['#ups_model#'] = is_object($model) ? $model->getConfiguration('value') : '';
 
 
-    return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'current', 'apcups')));
+    return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'apcups', 'apcups')));
   }
 
   public function getInformations() {
