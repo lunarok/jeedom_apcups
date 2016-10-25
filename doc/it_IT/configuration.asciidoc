@@ -1,0 +1,42 @@
+=== Configuration du plugin
+
+==== Configuration générale
+
+Le plugin ne comporte pas de configuration générale.
+
+A noter que lorsque le plugin est activé, il effectue deux actions :
+
+* Installation et configuration de apcupsd pour gérer un onduleur USB
+* Création d'un équipement pour déclarer l'onduleur USB créé
+
+==== Configuration d'un équipement
+
+Comme indiqué plus haut, un premier équipement est créé à l'activation. Il est fonctionnel pour un onduleur USB local.
+
+Vous pouvez ajouter d'autres équipements si vous disposez d'autres onduleurs sur le réseau par exemple.
+
+Le plugin se trouve dans la catégorie Monitoring.
+
+image::../images/apcups2.png[Image du produit]
+
+===== Paramètres
+
+L'équipement dispose de 3 paramètres :
+
+* Adresse : l'adresse de connexion pour obtenir les informations APC (127.0.0.1 par défaut)
+* Port : le port d'écoute du service apcupsd (par défaut 3551)
+* Puissance : la puissance de l'onduleur (nécessaire pour avoir accès à la consommation)
+
+Attention : il faut bien saisir une adresse ip et pas un nom pour l'adresse, celle ci est utilisée pour identifier qui émet un event en push
+
+Pour la puissance, elle est facilement identifiable dans le nom du modèle (Back-Up 550 USB par exemple, 550 est la puissance)
+
+==== Utilisation
+
+L'équipement dispose d'un widget associé pour le tableau de bord.
+
+La consommation est disponible pour être intégrée dans le plugin Energie par exemple via un calcul entre la charge et la puissance de l'onduleur.
+
+L'information event sera utile pour déclencher des scénarios, ainsi que le statut.
+
+La durée de batterie peut être un bon complément dans les scénarios déclenchés sur statut par exemple.

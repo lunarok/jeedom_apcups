@@ -1,0 +1,23 @@
+=== Configuration d'un onduleur non connecté sur Jeedom
+
+==== Installation d'apcupsd
+
+Apcupsd doit être installé biensur, c'est lui qui sera interrogé
+
+Il faut donc l'installer via la méthode appropriée sur votre système
+
+==== Configuration de l'adresse d'écoute
+
+Dans le fichier /etc/apcupsd/apcupsd.conf, vous devez vérifier le paramètre NISIP afin que ce soit bien l'adresse de la machine sur le réseau et pas 127.0.0.1 (qui serait non interrogeable)
+
+NISIP 192.168.0.100
+
+===== Modification d'apccontrol pour activer le push
+
+Dans le fichier /etc/apcupsd/apccontrol, vous devez ajouter en début une ligne pour appeler Jeedom sur les évènements.
+
+Copier celle qui est présente sur Jeedom
+
+==== Configuration dans Jeedom
+
+Maintenant il n'y a plus qu'à ajouter un équipement et renseigner l'adresse que vous avez remplie dans la configuration
