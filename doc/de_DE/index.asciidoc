@@ -1,12 +1,12 @@
-== Description
+== Beschreibung
 include::presentation.asciidoc[]
 
 '''
-== Configuration
+== Konfiguration
 include::configuration.asciidoc[]
 
 '''
-== Configuration d'un onduleur du réseau
+== Konfiguration einer Netzwerk USV
 include::distant.asciidoc[]
 
 '''
@@ -14,13 +14,13 @@ include::distant.asciidoc[]
 include::faq.asciidoc[]
 
 '''
-== Troubleshoting
+== Fehlersuche
 include::troubleshoting.asciidoc[]
 
 '''
-== Evènements
+== Ereignisse
 include::events.asciidoc[]
 
 '''
-== Changelog
+== Änderungsprotokoll
 include::changelog.asciidoc[]
