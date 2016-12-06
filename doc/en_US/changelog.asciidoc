@@ -1,7 +1,7 @@
 ==== Version 1.1
 
-Passage au système de dépendances 2.0
+Transition to the system of dependencies 2.0
 
 ==== Version 1
 
-Création du plugin
+- Creation of the plugin .

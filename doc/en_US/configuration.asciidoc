@@ -1,15 +1,15 @@
-=== Configuration du plugin
+=== The plugin configuration
 
-==== Configuration générale
+==== Global configuration
 
-Le plugin ne comporte pas de configuration générale.
+The plugin does not have general configuration.
 
 A noter que lorsque le plugin est activé, il effectue deux actions :
 
 * Installation et configuration de apcupsd pour gérer un onduleur USB
 * Création d'un équipement pour déclarer l'onduleur USB créé
 
-==== Configuration d'un équipement
+==== Equipment Configuration 
 
 Comme indiqué plus haut, un premier équipement est créé à l'activation. Il est fonctionnel pour un onduleur USB local.
 
@@ -19,7 +19,7 @@ Le plugin se trouve dans la catégorie Monitoring.
 
 image::../images/apcups2.png[Image du produit]
 
-===== Paramètres
+===== Settings
 
 L'équipement dispose de 3 paramètres :
 
@@ -31,7 +31,7 @@ Attention : il faut bien saisir une adresse ip et pas un nom pour l'adresse, cel
 
 Pour la puissance, elle est facilement identifiable dans le nom du modèle (Back-Up 550 USB par exemple, 550 est la puissance)
 
-==== Utilisation
+==== Use
 
 L'équipement dispose d'un widget associé pour le tableau de bord.
 
