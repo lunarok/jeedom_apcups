@@ -1,6 +1,6 @@
 [panel,danger]
-.Je n'ai pas d'informations qui remontent
+. I don't have any information going back
 --
-Il faut bien créer un équipement et remplir les informations.
+You have to create an equipment and fullfill the informations requested.
 --
 

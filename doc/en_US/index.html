@@ -420,17 +420,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_apc_ups_surveillance_d_onduleur_apc">1.1. APC-UPS, surveillance d&#8217;onduleur APC</a></li>
 </ul>
 </li>
-<li><a href="#_configuration">2. Configuration</a>
-<ul class="sectlevel2">
-<li><a href="#_the_plugin_configuration">2.1. The plugin configuration</a>
-<ul class="sectlevel3">
-<li><a href="#_global_configuration">2.1.1. Global configuration</a></li>
-<li><a href="#_equipment_configuration">2.1.2. Equipment Configuration</a></li>
-<li><a href="#_use">2.1.3. Use</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a href="#_configuration">2. Configuration</a></li>
+<li><a href="#_the_plugin_configuration">The plugin configuration</a></li>
+<li><a href="#_general_configuration">General configuration</a></li>
+<li><a href="#_configuration_of_equipment">Configuration of equipment</a>
+<ul class="sectlevel4">
+<li><a href="#_settings">Settings</a></li>
+<li><a href="#_use">1.2. Use</a></li>
 <li><a href="#_configuration_d_un_onduleur_du_réseau">3. Configuration d&#8217;un onduleur du réseau</a>
 <ul class="sectlevel2">
 <li><a href="#_configuration_d_un_onduleur_non_connecté_sur_jeedom">3.1. Configuration d&#8217;un onduleur non connecté sur Jeedom</a>
@@ -449,6 +445,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel3">
 <li><a href="#_version_1_1">7.1. Version 1.1</a></li>
 <li><a href="#_version_1">7.2. Version 1</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -509,37 +507,37 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect1">
 <h2 id="_configuration">2. Configuration</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_the_plugin_configuration">2.1. The plugin configuration</h3>
-<div class="sect3">
-<h4 id="_global_configuration">2.1.1. Global configuration</h4>
+
+</div>
+</div>
+<h1 id="_the_plugin_configuration" class="sect0">The plugin configuration</h1>
+
+<h1 id="_general_configuration" class="sect0">General configuration</h1>
 <div class="paragraph">
 <p>The plugin does not have general configuration.</p>
 </div>
 <div class="paragraph">
-<p>A noter que lorsque le plugin est activé, il effectue deux actions :</p>
+<p>Note that when the plugin is activated, it performs two actions:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Installation et configuration de apcupsd pour gérer un onduleur USB</p>
+<p>Installation and configuration of apcupsd to manage a USB UPS</p>
 </li>
 <li>
-<p>Création d&#8217;un équipement pour déclarer l&#8217;onduleur USB créé</p>
+<p>Creation of equipment to declare the created USB UPS</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_equipment_configuration">2.1.2. Equipment Configuration</h4>
+<h1 id="_configuration_of_equipment" class="sect0">Configuration of equipment</h1>
 <div class="paragraph">
-<p>Comme indiqué plus haut, un premier équipement est créé à l&#8217;activation. Il est fonctionnel pour un onduleur USB local.</p>
+<p>As mentioned above, a first device is created upon activation. It is functional for a local USB ups.</p>
 </div>
 <div class="paragraph">
-<p>Vous pouvez ajouter d&#8217;autres équipements si vous disposez d&#8217;autres onduleurs sur le réseau par exemple.</p>
+<p>You can add other equipment if you have other inverters on the network for example.</p>
 </div>
 <div class="paragraph">
-<p>Le plugin se trouve dans la catégorie Monitoring.</p>
+<p>The plugin is in the Monitoring category.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -549,47 +547,43 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect4">
 <h5 id="_settings">Settings</h5>
 <div class="paragraph">
-<p>L&#8217;équipement dispose de 3 paramètres :</p>
+<p>The equipment has 3 parameters:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Adresse : l&#8217;adresse de connexion pour obtenir les informations APC (127.0.0.1 par défaut)</p>
+<p>Address: the address of connection for the APC (127.0.0.1 by default) information</p>
 </li>
 <li>
-<p>Port : le port d&#8217;écoute du service apcupsd (par défaut 3551)</p>
+<p>Port: listening port of the apcupsd (default 3551) service</p>
 </li>
 <li>
-<p>Puissance : la puissance de l&#8217;onduleur (nécessaire pour avoir accès à la consommation)</p>
+<p>Power: the power of the ups (necessary to have access to the consumption)</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Attention : il faut bien saisir une adresse ip et pas un nom pour l&#8217;adresse, celle ci est utilisée pour identifier qui émet un event en push</p>
+<p>Attention: Please enter an ip address and not a name for the address, this one is used to identify which emits a push event</p>
 </div>
 <div class="paragraph">
-<p>Pour la puissance, elle est facilement identifiable dans le nom du modèle (Back-Up 550 USB par exemple, 550 est la puissance)</p>
-</div>
+<p>For power, it is easily identifiable in the name of the template (Back - Up 550 USB for example, 550 is power)</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_use">2.1.3. Use</h4>
+<h4 id="_use">1.2. Use</h4>
 <div class="paragraph">
-<p>L&#8217;équipement dispose d&#8217;un widget associé pour le tableau de bord.</p>
+<p>The equipment has a widget for the dashboard.</p>
 </div>
 <div class="paragraph">
-<p>La consommation est disponible pour être intégrée dans le plugin Energie par exemple via un calcul entre la charge et la puissance de l&#8217;onduleur.</p>
+<p>Consumption is available to be integrated into the energy plugin for example via a calculation between the load and the power of the inverter.</p>
 </div>
 <div class="paragraph">
-<p>L&#8217;information event sera utile pour déclencher des scénarios, ainsi que le statut.</p>
+<p>Event information will be useful for triggering scripts, as well as the status.</p>
 </div>
 <div class="paragraph">
-<p>La durée de batterie peut être un bon complément dans les scénarios déclenchés sur statut par exemple.</p>
+<p>Battery life can be a good complement in the scenarios triggered on status for example.</p>
 </div>
 <hr>
-</div>
-</div>
-</div>
 </div>
 <div class="sect1">
 <h2 id="_configuration_d_un_onduleur_du_réseau">3. Configuration d&#8217;un onduleur du réseau</h2>
@@ -656,10 +650,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect1">
 <h2 id="_troubleshoting">5. Troubleshoting</h2>
 <div class="sectionbody">
-<div class="openblock panel">
-<div class="title">Je n&#8217;ai pas d&#8217;informations qui remontent</div><div class="content">
+<div class="olist panel">
+<ol class="panel">
+<li>
+<p>I don&#8217;t have any information going back</p>
+</li>
+</ol>
+</div>
+<div class="openblock">
+<div class="content">
 <div class="paragraph">
-<p>Il faut bien créer un équipement et remplir les informations.</p>
+<p>You have to create an equipment and fullfill the informations requested.</p>
 </div>
 </div>
 </div>

@@ -1,12 +1,12 @@
 {
     "plugins\/apcups\/desktop\/php\/apcups.php": {
-        "Ajouter un équipement": "Ajouter un équipement",
-        "Rechercher": "Rechercher",
+        "Ajouter un équipement": "Add equipment",
+        "Rechercher": "Search",
         "Mes onduleurs APC": "Mes onduleurs APC",
-        "Sauvegarder": "Sauvegarder",
-        "Supprimer": "Supprimer",
-        "Configuration avancée": "Configuration avancée",
-        "Equipement": "Equipement",
+        "Sauvegarder": "Save",
+        "Supprimer": "Delete",
+        "Configuration avancée": "Adanced Settings",
+        "Equipement": "Equipment",
         "Commandes": "Commandes",
         "Onduleur APC": "Onduleur APC",
         "Nom de l'équipement apcups": "Nom de l'équipement apcups",
