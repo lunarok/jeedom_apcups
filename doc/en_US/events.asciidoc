@@ -2,7 +2,7 @@
 Voici la liste des évènements que peux envoyer apcupsd
 
 [panel,primary]
-.annoyme
+.annoy me
 --
 When a shutdown is scheduled, and the time specified on the ANNOYME directive in the apcupsd.conf file expires, this event is generated.
 --

@@ -4,7 +4,7 @@ Ce plugin permet de récupérer les informations d'onduleurs APC et également d
 
 Il utilise apcupsd en dépendance (installer pendant l'activation du plugin) et permet de gérer un onduleur APC en USB ou distant.
 
-Les informations fournies sont :
+The information provided is:
 
 * Charge : le % de charge de l'onduleur par rapport à sa puissance
 * Batterie : le % de charge de la batterie de l'onduleur
