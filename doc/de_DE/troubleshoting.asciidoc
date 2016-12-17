@@ -1,5 +1,5 @@
 [panel,danger]
-.Je n'ai pas d'informations qui remontent
+.Ich bekomme keine Informationen, die zurückreichen
 --
 Il faut bien créer un équipement et remplir les informations.
 --

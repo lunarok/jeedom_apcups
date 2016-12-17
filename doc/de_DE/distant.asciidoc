@@ -1,6 +1,6 @@
 === Configuration d'un onduleur non connecté sur Jeedom
 
-==== Installation d'apcupsd
+==== Apcupsd Installation
 
 Apcupsd doit être installé biensur, c'est lui qui sera interrogé
 
@@ -18,6 +18,6 @@ Dans le fichier /etc/apcupsd/apccontrol, vous devez ajouter en début une ligne 
 
 Copier celle qui est présente sur Jeedom
 
-==== Configuration dans Jeedom
+==== Konfiguration in Jeedom
 
 Maintenant il n'y a plus qu'à ajouter un équipement et renseigner l'adresse que vous avez remplie dans la configuration
