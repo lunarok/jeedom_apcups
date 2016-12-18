@@ -1,6 +1,6 @@
 === Configuration d'un onduleur non connecté sur Jeedom
 
-==== Installation d'apcupsd
+==== Installation of apcupsd
 
 Apcupsd doit être installé biensur, c'est lui qui sera interrogé
 
