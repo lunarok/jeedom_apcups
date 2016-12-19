@@ -1,23 +1,23 @@
-=== Configuration d'un onduleur non connecté sur Jeedom
+=== Configuration of a UPS not connected on Jeedom
 
 ==== Installation of apcupsd
 
-Apcupsd doit être installé biensur, c'est lui qui sera interrogé
+Apcupsd must be installed of course, it will be questioned
 
-Il faut donc l'installer via la méthode appropriée sur votre système
+Therefore, install it via the appropriate method on your system
 
-==== Configuration de l'adresse d'écoute
+==== The listening address configuration
 
-Dans le fichier /etc/apcupsd/apcupsd.conf, vous devez vérifier le paramètre NISIP afin que ce soit bien l'adresse de la machine sur le réseau et pas 127.0.0.1 (qui serait non interrogeable)
+In the /etc/apcupsd/apcupsd.conf file, you must verify the NISIP parameter so that it is the address of the machine on the network and not 127.0.0.1 (which would be non-searchable)
 
 NISIP 192.168.0.100
 
-===== Modification d'apccontrol pour activer le push
+===== Editing apccontrol to activate the push
 
-Dans le fichier /etc/apcupsd/apccontrol, vous devez ajouter en début une ligne pour appeler Jeedom sur les évènements.
+In the /etc/apcupsd/apccontrol file, you must first add a line to call Jeedom on the events.
 
-Copier celle qui est présente sur Jeedom
+Copy the one that is present on Jeedom
 
-==== Configuration dans Jeedom
+==== Configuration in Jeedom
 
-Maintenant il n'y a plus qu'à ajouter un équipement et renseigner l'adresse que vous avez remplie dans la configuration
+Now you only have to add a device and fill in the address you filled in the configuration

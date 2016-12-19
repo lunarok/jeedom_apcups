@@ -429,11 +429,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_use">1.2. Use</a></li>
 <li><a href="#_configuration_d_un_onduleur_du_réseau">3. Configuration d&#8217;un onduleur du réseau</a>
 <ul class="sectlevel2">
-<li><a href="#_configuration_d_un_onduleur_non_connecté_sur_jeedom">3.1. Configuration d&#8217;un onduleur non connecté sur Jeedom</a>
+<li><a href="#_configuration_of_a_ups_not_connected_on_jeedom">3.1. Configuration of a UPS not connected on Jeedom</a>
 <ul class="sectlevel3">
 <li><a href="#_installation_of_apcupsd">3.1.1. Installation of apcupsd</a></li>
-<li><a href="#_configuration_de_l_adresse_d_écoute">3.1.2. Configuration de l&#8217;adresse d&#8217;écoute</a></li>
-<li><a href="#_configuration_dans_jeedom">3.1.3. Configuration dans Jeedom</a></li>
+<li><a href="#_the_listening_address_configuration">3.1.2. The listening address configuration</a></li>
+<li><a href="#_configuration_in_jeedom">3.1.3. Configuration in Jeedom</a></li>
 </ul>
 </li>
 </ul>
@@ -589,38 +589,38 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_configuration_d_un_onduleur_du_réseau">3. Configuration d&#8217;un onduleur du réseau</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_configuration_d_un_onduleur_non_connecté_sur_jeedom">3.1. Configuration d&#8217;un onduleur non connecté sur Jeedom</h3>
+<h3 id="_configuration_of_a_ups_not_connected_on_jeedom">3.1. Configuration of a UPS not connected on Jeedom</h3>
 <div class="sect3">
 <h4 id="_installation_of_apcupsd">3.1.1. Installation of apcupsd</h4>
 <div class="paragraph">
-<p>Apcupsd doit être installé biensur, c&#8217;est lui qui sera interrogé</p>
+<p>Apcupsd must be installed of course, it will be questioned</p>
 </div>
 <div class="paragraph">
-<p>Il faut donc l&#8217;installer via la méthode appropriée sur votre système</p>
+<p>Therefore, install it via the appropriate method on your system</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_configuration_de_l_adresse_d_écoute">3.1.2. Configuration de l&#8217;adresse d&#8217;écoute</h4>
+<h4 id="_the_listening_address_configuration">3.1.2. The listening address configuration</h4>
 <div class="paragraph">
-<p>Dans le fichier /etc/apcupsd/apcupsd.conf, vous devez vérifier le paramètre NISIP afin que ce soit bien l&#8217;adresse de la machine sur le réseau et pas 127.0.0.1 (qui serait non interrogeable)</p>
+<p>In the /etc/apcupsd/apcupsd.conf file, you must verify the NISIP parameter so that it is the address of the machine on the network and not 127.0.0.1 (which would be non-searchable)</p>
 </div>
 <div class="paragraph">
 <p>NISIP 192.168.0.100</p>
 </div>
 <div class="sect4">
-<h5 id="_modification_d_apccontrol_pour_activer_le_push">Modification d&#8217;apccontrol pour activer le push</h5>
+<h5 id="_editing_apccontrol_to_activate_the_push">Editing apccontrol to activate the push</h5>
 <div class="paragraph">
-<p>Dans le fichier /etc/apcupsd/apccontrol, vous devez ajouter en début une ligne pour appeler Jeedom sur les évènements.</p>
+<p>In the /etc/apcupsd/apccontrol file, you must first add a line to call Jeedom on the events.</p>
 </div>
 <div class="paragraph">
-<p>Copier celle qui est présente sur Jeedom</p>
+<p>Copy the one that is present on Jeedom</p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_configuration_dans_jeedom">3.1.3. Configuration dans Jeedom</h4>
+<h4 id="_configuration_in_jeedom">3.1.3. Configuration in Jeedom</h4>
 <div class="paragraph">
-<p>Maintenant il n&#8217;y a plus qu&#8217;à ajouter un équipement et renseigner l&#8217;adresse que vous avez remplie dans la configuration</p>
+<p>Now you only have to add a device and fill in the address you filled in the configuration</p>
 </div>
 <hr>
 </div>

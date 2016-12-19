@@ -1,23 +1,23 @@
-=== Configuration d'un onduleur non connecté sur Jeedom
+=== Konfiguration einer USV, die nicht mit Jeedom verbunden ist
 
 ==== Apcupsd Installation
 
-Apcupsd doit être installé biensur, c'est lui qui sera interrogé
+Apcupsd muss natürlich installiert sein, über dieses wird abgefragt
 
-Il faut donc l'installer via la méthode appropriée sur votre système
+Deshalb installieren Sie es über die entsprechende Methode für Ihr System
 
-==== Configuration de l'adresse d'écoute
+==== Konfiguration der Überwachungsadresse
 
-Dans le fichier /etc/apcupsd/apcupsd.conf, vous devez vérifier le paramètre NISIP afin que ce soit bien l'adresse de la machine sur le réseau et pas 127.0.0.1 (qui serait non interrogeable)
+In der Datei /etc/apcupsd/apcupsd.conf müssen Sie den NISIP-Parameter prüfen, damit es wirklich die Adresse des Gerätes in dem Netzwerk und nicht 127.0.0.1 ist (das nicht abrufbar wäre).
 
 NISIP 192.168.0.100
 
-===== Modification d'apccontrol pour activer le push
+===== Änderung von apccontrol, um den push zu aktivieren
 
-Dans le fichier /etc/apcupsd/apccontrol, vous devez ajouter en début une ligne pour appeler Jeedom sur les évènements.
+In der Datei /etc/apcupsd/apccontrol, müssen Sie am Anfang eine Zeile hinzufügen, um Jeedom auf ein Ereignis zu rufen.
 
-Copier celle qui est présente sur Jeedom
+Die Kopie, die auf Jeedom vorhanden ist.
 
 ==== Konfiguration in Jeedom
 
-Maintenant il n'y a plus qu'à ajouter un équipement et renseigner l'adresse que vous avez remplie dans la configuration
+Jetzt ist dort nur noch, ein Gerät hinzuzufügen und die Adresse einzugeben, die Sie in der Konfiguration eingetragen haben.

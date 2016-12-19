@@ -1,6 +1,6 @@
-=== Configuration du plugin
+=== Plugin Konfiguration
 
-==== Configuration générale
+==== Allgemeine Konfiguration
 
 Le plugin ne comporte pas de configuration générale.
 
@@ -9,29 +9,29 @@ A noter que lorsque le plugin est activé, il effectue deux actions :
 * Installation et configuration de apcupsd pour gérer un onduleur USB
 * Création d'un équipement pour déclarer l'onduleur USB créé
 
-==== Configuration d'un équipement
+==== Konfiguration von Geräten
 
 Comme indiqué plus haut, un premier équipement est créé à l'activation. Il est fonctionnel pour un onduleur USB local.
 
 Vous pouvez ajouter d'autres équipements si vous disposez d'autres onduleurs sur le réseau par exemple.
 
-Le plugin se trouve dans la catégorie Monitoring.
+Das Plugin ist in der Kategorie Monitoring.
 
 image::../images/apcups2.png[Image du produit]
 
-===== Paramètres
+Parameter
 
-L'équipement dispose de 3 paramètres :
+Das Gerät verfügt über 3 Parameter :
 
-* Adresse : l'adresse de connexion pour obtenir les informations APC (127.0.0.1 par défaut)
-* Port : le port d'écoute du service apcupsd (par défaut 3551)
-* Puissance : la puissance de l'onduleur (nécessaire pour avoir accès à la consommation)
+ * Adresse : die Verbindungsadresse, um die APC-Informationen zu erhalten (Standard 127.0.0.1) 
+* Port : Port des empfangsbereiten Apcupsd Dienstes (Standard 3551) 
+* Leistung : die Leistung der USV (notwendig, um Zugriff zum Verbrauch zu haben)
 
 Attention : il faut bien saisir une adresse ip et pas un nom pour l'adresse, celle ci est utilisée pour identifier qui émet un event en push
 
 Pour la puissance, elle est facilement identifiable dans le nom du modèle (Back-Up 550 USB par exemple, 550 est la puissance)
 
-==== Utilisation
+==== Verwendung
 
 L'équipement dispose d'un widget associé pour le tableau de bord.
 

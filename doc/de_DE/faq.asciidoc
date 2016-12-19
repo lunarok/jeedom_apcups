@@ -1,5 +1,5 @@
 [panel,primary]
-.Est-ce que le plugin s'appuie sur des API tiers ?
+.Stützt sich das Plugin auf APIs Dritter ?
 --
-Le plugin utilise apcupsd pour récupérer ses informations.
+Das Plugin benutzt apcupsd, um Informationen zurück zugewinnen.
 --

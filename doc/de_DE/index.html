@@ -417,26 +417,26 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_beschreibung">1. Beschreibung</a>
 <ul class="sectlevel2">
-<li><a href="#_apc_ups_surveillance_d_onduleur_apc">1.1. APC-UPS, surveillance d&#8217;onduleur APC</a></li>
+<li><a href="#_apc_usv_apc_usv_Überwachung">1.1. APC-USV, APC USV Überwachung</a></li>
 </ul>
 </li>
 <li><a href="#_konfiguration">2. Konfiguration</a>
 <ul class="sectlevel2">
-<li><a href="#_configuration_du_plugin">2.1. Configuration du plugin</a>
+<li><a href="#_plugin_konfiguration">2.1. Plugin Konfiguration</a>
 <ul class="sectlevel3">
-<li><a href="#_configuration_générale">2.1.1. Configuration générale</a></li>
-<li><a href="#_configuration_d_un_équipement">2.1.2. Configuration d&#8217;un équipement</a></li>
-<li><a href="#_utilisation">2.1.3. Utilisation</a></li>
+<li><a href="#_allgemeine_konfiguration">2.1.1. Allgemeine Konfiguration</a></li>
+<li><a href="#_konfiguration_von_geräten">2.1.2. Konfiguration von Geräten</a></li>
+<li><a href="#_verwendung">2.1.3. Verwendung</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#_konfiguration_einer_netzwerk_usv">3. Konfiguration einer Netzwerk USV</a>
 <ul class="sectlevel2">
-<li><a href="#_configuration_d_un_onduleur_non_connecté_sur_jeedom">3.1. Configuration d&#8217;un onduleur non connecté sur Jeedom</a>
+<li><a href="#_konfiguration_einer_usv_die_nicht_mit_jeedom_verbunden_ist">3.1. Konfiguration einer USV, die nicht mit Jeedom verbunden ist</a>
 <ul class="sectlevel3">
 <li><a href="#_apcupsd_installation">3.1.1. Apcupsd Installation</a></li>
-<li><a href="#_configuration_de_l_adresse_d_écoute">3.1.2. Configuration de l&#8217;adresse d&#8217;écoute</a></li>
+<li><a href="#_konfiguration_der_Überwachungsadresse">3.1.2. Konfiguration der Überwachungsadresse</a></li>
 <li><a href="#_konfiguration_in_jeedom">3.1.3. Konfiguration in Jeedom</a></li>
 </ul>
 </li>
@@ -459,7 +459,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_beschreibung">1. Beschreibung</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_apc_ups_surveillance_d_onduleur_apc">1.1. APC-UPS, surveillance d&#8217;onduleur APC</h3>
+<h3 id="_apc_usv_apc_usv_Überwachung">1.1. APC-USV, APC USV Überwachung</h3>
 <div class="paragraph">
 <p>Ce plugin permet de récupérer les informations d&#8217;onduleurs APC et également d&#8217;être averti sur leurs évènements.</p>
 </div>
@@ -467,24 +467,24 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Il utilise apcupsd en dépendance (installer pendant l&#8217;activation du plugin) et permet de gérer un onduleur APC en USB ou distant.</p>
 </div>
 <div class="paragraph">
-<p>Les informations fournies sont :</p>
+<p>Die bereitgestellten Informationen sind :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Charge : le % de charge de l&#8217;onduleur par rapport à sa puissance</p>
+<p>Last : die % Last der USV bezogen auf seine Leistung</p>
 </li>
 <li>
-<p>Batterie : le % de charge de la batterie de l&#8217;onduleur</p>
+<p>Batterie : die % der Batterieladung der USV</p>
 </li>
 <li>
 <p>Courant Entrant : la tension du courant d&#8217;alimentation de l&#8217;onduleur</p>
 </li>
 <li>
-<p>Modèle : le modèle d&#8217;onduleur</p>
+<p>Modell : das USV Modell</p>
 </li>
 <li>
-<p>Statut : le statut de l&#8217;onduleur</p>
+<p>Status : der Status der USV</p>
 </li>
 <li>
 <p>Temps sur batterie : la durée d&#8217;autonomie disponible</p>
@@ -510,9 +510,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_konfiguration">2. Konfiguration</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_configuration_du_plugin">2.1. Configuration du plugin</h3>
+<h3 id="_plugin_konfiguration">2.1. Plugin Konfiguration</h3>
 <div class="sect3">
-<h4 id="_configuration_générale">2.1.1. Configuration générale</h4>
+<h4 id="_allgemeine_konfiguration">2.1.1. Allgemeine Konfiguration</h4>
 <div class="paragraph">
 <p>Le plugin ne comporte pas de configuration générale.</p>
 </div>
@@ -531,7 +531,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_configuration_d_un_équipement">2.1.2. Configuration d&#8217;un équipement</h4>
+<h4 id="_konfiguration_von_geräten">2.1.2. Konfiguration von Geräten</h4>
 <div class="paragraph">
 <p>Comme indiqué plus haut, un premier équipement est créé à l&#8217;activation. Il est fonctionnel pour un onduleur USB local.</p>
 </div>
@@ -539,28 +539,29 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Vous pouvez ajouter d&#8217;autres équipements si vous disposez d&#8217;autres onduleurs sur le réseau par exemple.</p>
 </div>
 <div class="paragraph">
-<p>Le plugin se trouve dans la catégorie Monitoring.</p>
+<p>Das Plugin ist in der Kategorie Monitoring.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/apcups2.png" alt="Image du produit">
 </div>
 </div>
-<div class="sect4">
-<h5 id="_paramètres">Paramètres</h5>
 <div class="paragraph">
-<p>L&#8217;équipement dispose de 3 paramètres :</p>
+<p>Parameter</p>
+</div>
+<div class="paragraph">
+<p>Das Gerät verfügt über 3 Parameter :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Adresse : l&#8217;adresse de connexion pour obtenir les informations APC (127.0.0.1 par défaut)</p>
+<p>Adresse : die Verbindungsadresse, um die APC-Informationen zu erhalten (Standard 127.0.0.1)</p>
 </li>
 <li>
-<p>Port : le port d&#8217;écoute du service apcupsd (par défaut 3551)</p>
+<p>Port : Port des empfangsbereiten Apcupsd Dienstes (Standard 3551)</p>
 </li>
 <li>
-<p>Puissance : la puissance de l&#8217;onduleur (nécessaire pour avoir accès à la consommation)</p>
+<p>Leistung : die Leistung der USV (notwendig, um Zugriff zum Verbrauch zu haben)</p>
 </li>
 </ul>
 </div>
@@ -571,9 +572,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Pour la puissance, elle est facilement identifiable dans le nom du modèle (Back-Up 550 USB par exemple, 550 est la puissance)</p>
 </div>
 </div>
-</div>
 <div class="sect3">
-<h4 id="_utilisation">2.1.3. Utilisation</h4>
+<h4 id="_verwendung">2.1.3. Verwendung</h4>
 <div class="paragraph">
 <p>L&#8217;équipement dispose d&#8217;un widget associé pour le tableau de bord.</p>
 </div>
@@ -595,38 +595,38 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_konfiguration_einer_netzwerk_usv">3. Konfiguration einer Netzwerk USV</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_configuration_d_un_onduleur_non_connecté_sur_jeedom">3.1. Configuration d&#8217;un onduleur non connecté sur Jeedom</h3>
+<h3 id="_konfiguration_einer_usv_die_nicht_mit_jeedom_verbunden_ist">3.1. Konfiguration einer USV, die nicht mit Jeedom verbunden ist</h3>
 <div class="sect3">
 <h4 id="_apcupsd_installation">3.1.1. Apcupsd Installation</h4>
 <div class="paragraph">
-<p>Apcupsd doit être installé biensur, c&#8217;est lui qui sera interrogé</p>
+<p>Apcupsd muss natürlich installiert sein, über dieses wird abgefragt</p>
 </div>
 <div class="paragraph">
-<p>Il faut donc l&#8217;installer via la méthode appropriée sur votre système</p>
+<p>Deshalb installieren Sie es über die entsprechende Methode für Ihr System</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_configuration_de_l_adresse_d_écoute">3.1.2. Configuration de l&#8217;adresse d&#8217;écoute</h4>
+<h4 id="_konfiguration_der_Überwachungsadresse">3.1.2. Konfiguration der Überwachungsadresse</h4>
 <div class="paragraph">
-<p>Dans le fichier /etc/apcupsd/apcupsd.conf, vous devez vérifier le paramètre NISIP afin que ce soit bien l&#8217;adresse de la machine sur le réseau et pas 127.0.0.1 (qui serait non interrogeable)</p>
+<p>In der Datei /etc/apcupsd/apcupsd.conf müssen Sie den NISIP-Parameter prüfen, damit es wirklich die Adresse des Gerätes in dem Netzwerk und nicht 127.0.0.1 ist (das nicht abrufbar wäre).</p>
 </div>
 <div class="paragraph">
 <p>NISIP 192.168.0.100</p>
 </div>
 <div class="sect4">
-<h5 id="_modification_d_apccontrol_pour_activer_le_push">Modification d&#8217;apccontrol pour activer le push</h5>
+<h5 id="_Änderung_von_apccontrol_um_den_push_zu_aktivieren">Änderung von apccontrol, um den push zu aktivieren</h5>
 <div class="paragraph">
-<p>Dans le fichier /etc/apcupsd/apccontrol, vous devez ajouter en début une ligne pour appeler Jeedom sur les évènements.</p>
+<p>In der Datei /etc/apcupsd/apccontrol, müssen Sie am Anfang eine Zeile hinzufügen, um Jeedom auf ein Ereignis zu rufen.</p>
 </div>
 <div class="paragraph">
-<p>Copier celle qui est présente sur Jeedom</p>
+<p>Die Kopie, die auf Jeedom vorhanden ist.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_konfiguration_in_jeedom">3.1.3. Konfiguration in Jeedom</h4>
 <div class="paragraph">
-<p>Maintenant il n&#8217;y a plus qu&#8217;à ajouter un équipement et renseigner l&#8217;adresse que vous avez remplie dans la configuration</p>
+<p>Jetzt ist dort nur noch, ein Gerät hinzuzufügen und die Adresse einzugeben, die Sie in der Konfiguration eingetragen haben.</p>
 </div>
 <hr>
 </div>
@@ -637,9 +637,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_faq">4. FAQ</h2>
 <div class="sectionbody">
 <div class="openblock panel">
-<div class="title">Est-ce que le plugin s&#8217;appuie sur des API tiers ?</div><div class="content">
+<div class="title">Stützt sich das Plugin auf APIs Dritter ?</div><div class="content">
 <div class="paragraph">
-<p>Le plugin utilise apcupsd pour récupérer ses informations.</p>
+<p>Das Plugin benutzt apcupsd, um Informationen zurück zugewinnen.</p>
 </div>
 </div>
 </div>
@@ -814,13 +814,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect3">
 <h4 id="_version_1_1">7.1. Version 1.1</h4>
 <div class="paragraph">
-<p>Passage au système de dépendances 2.0</p>
+<p>Die Umstellung auf das Abhängigkeitssystem 2.0</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_version_1">7.2. Version 1</h4>
 <div class="paragraph">
-<p>Création du plugin</p>
+<p>Erstellung des Plugins</p>
 </div>
 </div>
 </div>

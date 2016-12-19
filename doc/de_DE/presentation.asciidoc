@@ -1,16 +1,16 @@
-=== APC-UPS, surveillance d'onduleur APC
+=== APC-USV, APC USV Überwachung
 
 Ce plugin permet de récupérer les informations d'onduleurs APC et également d'être averti sur leurs évènements.
 
 Il utilise apcupsd en dépendance (installer pendant l'activation du plugin) et permet de gérer un onduleur APC en USB ou distant.
 
-Les informations fournies sont :
+Die bereitgestellten Informationen sind :
 
-* Charge : le % de charge de l'onduleur par rapport à sa puissance
-* Batterie : le % de charge de la batterie de l'onduleur
+* Last : die % Last der USV bezogen auf seine Leistung
+* Batterie : die % der Batterieladung der USV
 * Courant Entrant : la tension du courant d'alimentation de l'onduleur
-* Modèle : le modèle d'onduleur
-* Statut : le statut de l'onduleur
+* Modell : das USV Modell 
+* Status : der Status der USV
 * Temps sur batterie : la durée d'autonomie disponible
 * Voltage pile : tension de la pile
 * Evènement : tout évènement détecté par le service apcupsd qui est transmit en push à Jeedom
