@@ -1,17 +1,17 @@
-=== APC-UPS, surveillance d'onduleur APC
+=== APC-UPS monitoring
 
-Ce plugin permet de récupérer les informations d'onduleurs APC et également d'être averti sur leurs évènements.
+This plugin allows to recover the information about APC ups and also to be notified on their events.
 
-Il utilise apcupsd en dépendance (installer pendant l'activation du plugin) et permet de gérer un onduleur APC en USB ou distant.
+It uses apcupsd in dependence (installed during activation of the plugin) and allows to manage a UPS APC with USB or in remote.
 
 The information provided is:
 
-* Charge : le % de charge de l'onduleur par rapport à sa puissance
-* Batterie : le % de charge de la batterie de l'onduleur
-* Courant Entrant : la tension du courant d'alimentation de l'onduleur
-* Modèle : le modèle d'onduleur
-* Statut : le statut de l'onduleur
-* Temps sur batterie : la durée d'autonomie disponible
+* Load: the % load of the inverter from its power
+* Battery: the load % of the UPS battery
+* Current inbound: the voltage of the supply current of the inverter
+* Model: the model of inverter
+* Status: the status of the UPS
+* Time on battery: the available run time
 * Voltage pile : tension de la pile
 * Evènement : tout évènement détecté par le service apcupsd qui est transmit en push à Jeedom
 

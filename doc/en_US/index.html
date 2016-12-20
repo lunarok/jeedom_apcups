@@ -417,7 +417,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_description">1. Description</a>
 <ul class="sectlevel2">
-<li><a href="#_apc_ups_surveillance_d_onduleur_apc">1.1. APC-UPS, surveillance d&#8217;onduleur APC</a></li>
+<li><a href="#_apc_ups_monitoring">1.1. APC-UPS monitoring</a></li>
 </ul>
 </li>
 <li><a href="#_settings">2. Settings</a></li>
@@ -427,24 +427,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel4">
 <li><a href="#_settings_2">Settings</a></li>
 <li><a href="#_use">1.2. Use</a></li>
-<li><a href="#_configuration_d_un_onduleur_du_réseau">3. Configuration d&#8217;un onduleur du réseau</a>
-<ul class="sectlevel2">
-<li><a href="#_configuration_of_a_ups_not_connected_on_jeedom">3.1. Configuration of a UPS not connected on Jeedom</a>
+<li><a href="#_configuration_of_a_ups_in_network">1.3. Configuration of a UPS in network</a></li>
+<li><a href="#_configuration_of_a_ups_not_connected_on_jeedom">1.4. Configuration of a UPS not connected on Jeedom</a>
 <ul class="sectlevel3">
-<li><a href="#_installation_of_apcupsd">3.1.1. Installation of apcupsd</a></li>
-<li><a href="#_the_listening_address_configuration">3.1.2. The listening address configuration</a></li>
-<li><a href="#_configuration_in_jeedom">3.1.3. Configuration in Jeedom</a></li>
+<li><a href="#_installation_of_apcupsd">1.4.1. Installation of apcupsd</a></li>
+<li><a href="#_the_listening_address_configuration">1.4.2. The listening address configuration</a></li>
+<li><a href="#_configuration_in_jeedom">1.4.3. Configuration in Jeedom</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li><a href="#_faq">4. FAQ</a></li>
-<li><a href="#_troubleshoting">5. Troubleshoting</a></li>
-<li><a href="#_evènements">6. Evènements</a></li>
-<li><a href="#_changelog">7. Changelog</a>
+<li><a href="#_faq">5. FAQ</a></li>
+<li><a href="#_troubleshoting">6. Troubleshoting</a></li>
+<li><a href="#_events">7. Events</a></li>
+<li><a href="#_changelog">8. Changelog</a>
 <ul class="sectlevel3">
-<li><a href="#_version_1_1">7.1. Version 1.1</a></li>
-<li><a href="#_version_1">7.2. Version 1</a></li>
+<li><a href="#_version_1_1">8.1. Version 1.1</a></li>
+<li><a href="#_version_1">8.2. Version 1</a></li>
 </ul>
 </li>
 </ul>
@@ -457,12 +454,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_description">1. Description</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_apc_ups_surveillance_d_onduleur_apc">1.1. APC-UPS, surveillance d&#8217;onduleur APC</h3>
+<h3 id="_apc_ups_monitoring">1.1. APC-UPS monitoring</h3>
 <div class="paragraph">
-<p>Ce plugin permet de récupérer les informations d&#8217;onduleurs APC et également d&#8217;être averti sur leurs évènements.</p>
+<p>This plugin allows to recover the information about APC ups and also to be notified on their events.</p>
 </div>
 <div class="paragraph">
-<p>Il utilise apcupsd en dépendance (installer pendant l&#8217;activation du plugin) et permet de gérer un onduleur APC en USB ou distant.</p>
+<p>It uses apcupsd in dependence (installed during activation of the plugin) and allows to manage a UPS APC with USB or in remote.</p>
 </div>
 <div class="paragraph">
 <p>The information provided is:</p>
@@ -470,22 +467,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>Charge : le % de charge de l&#8217;onduleur par rapport à sa puissance</p>
+<p>Load: the % load of the inverter from its power</p>
 </li>
 <li>
-<p>Batterie : le % de charge de la batterie de l&#8217;onduleur</p>
+<p>Battery: the load % of the UPS battery</p>
 </li>
 <li>
-<p>Courant Entrant : la tension du courant d&#8217;alimentation de l&#8217;onduleur</p>
+<p>Current inbound: the voltage of the supply current of the inverter</p>
 </li>
 <li>
-<p>Modèle : le modèle d&#8217;onduleur</p>
+<p>Model: the model of inverter</p>
 </li>
 <li>
-<p>Statut : le statut de l&#8217;onduleur</p>
+<p>Status: the status of the UPS</p>
 </li>
 <li>
-<p>Temps sur batterie : la durée d&#8217;autonomie disponible</p>
+<p>Time on battery: the available run time</p>
 </li>
 <li>
 <p>Voltage pile : tension de la pile</p>
@@ -585,13 +582,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <hr>
 </div>
-<div class="sect1">
-<h2 id="_configuration_d_un_onduleur_du_réseau">3. Configuration d&#8217;un onduleur du réseau</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="_configuration_of_a_ups_not_connected_on_jeedom">3.1. Configuration of a UPS not connected on Jeedom</h3>
+<h3 id="_configuration_of_a_ups_in_network">1.3. Configuration of a UPS in network</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_configuration_of_a_ups_not_connected_on_jeedom">1.4. Configuration of a UPS not connected on Jeedom</h3>
 <div class="sect3">
-<h4 id="_installation_of_apcupsd">3.1.1. Installation of apcupsd</h4>
+<h4 id="_installation_of_apcupsd">1.4.1. Installation of apcupsd</h4>
 <div class="paragraph">
 <p>Apcupsd must be installed of course, it will be questioned</p>
 </div>
@@ -600,7 +598,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_the_listening_address_configuration">3.1.2. The listening address configuration</h4>
+<h4 id="_the_listening_address_configuration">1.4.2. The listening address configuration</h4>
 <div class="paragraph">
 <p>In the /etc/apcupsd/apcupsd.conf file, you must verify the NISIP parameter so that it is the address of the machine on the network and not 127.0.0.1 (which would be non-searchable)</p>
 </div>
@@ -618,17 +616,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_configuration_in_jeedom">3.1.3. Configuration in Jeedom</h4>
+<h4 id="_configuration_in_jeedom">1.4.3. Configuration in Jeedom</h4>
 <div class="paragraph">
 <p>Now you only have to add a device and fill in the address you filled in the configuration</p>
 </div>
 <hr>
 </div>
 </div>
-</div>
-</div>
 <div class="sect1">
-<h2 id="_faq">4. FAQ</h2>
+<h2 id="_faq">5. FAQ</h2>
 <div class="sectionbody">
 <div class="olist panel">
 <ol class="panel">
@@ -648,7 +644,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_troubleshoting">5. Troubleshoting</h2>
+<h2 id="_troubleshoting">6. Troubleshoting</h2>
 <div class="sectionbody">
 <div class="olist panel">
 <ol class="panel">
@@ -668,36 +664,36 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_evènements">6. Evènements</h2>
+<h2 id="_events">7. Events</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Voici la liste des évènements que peux envoyer apcupsd</p>
+<p>Here is the list of events that can send apcupsd</p>
 </div>
 <div class="openblock panel">
 <div class="title">annoy me</div><div class="content">
 <div class="paragraph">
-<p>When a shutdown is scheduled, and the time specified on the ANNOYME directive in the apcupsd.conf file expires, this event is generated.</p>
+<p>When a shutdown is scheduled, and the time specified on the directive ANNOYME expires in the apcupsd.conf file, this event is generated.</p>
 </div>
 </div>
 </div>
 <div class="openblock panel">
 <div class="title">changeme</div><div class="content">
 <div class="paragraph">
-<p>When apcupsd detects that the mains are on, but the battery is not functioning correctly, this event is generated. It is repeated every x hours.</p>
+<p>When apcupsd detects that the hands are on, but the battery is not functioning correctly, this event is generated. It was repeated every x hours.</p>
 </div>
 </div>
 </div>
 <div class="openblock panel">
 <div class="title">commfailure</div><div class="content">
 <div class="paragraph">
-<p>This event is generated each time the communications line with the computer is severed. This event is not detected on dumb signaling UPSes.</p>
+<p>This event is generated each time the communication line with the computer is severed. This event is not detected you dumb signaling UPSes.</p>
 </div>
 </div>
 </div>
 <div class="openblock panel">
 <div class="title">commok</div><div class="content">
 <div class="paragraph">
-<p>After a commfailure event is issued, when the communications to the computer is re-established, this event will be generated.</p>
+<p>A commfailure event is issued, when the communications to the computer is re-established, this event will be generated.</p>
 </div>
 </div>
 </div>
@@ -817,16 +813,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_changelog">7. Changelog</h2>
+<h2 id="_changelog">8. Changelog</h2>
 <div class="sectionbody">
 <div class="sect3">
-<h4 id="_version_1_1">7.1. Version 1.1</h4>
+<h4 id="_version_1_1">8.1. Version 1.1</h4>
 <div class="paragraph">
 <p>Transition to the system of dependencies 2.0</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_version_1">7.2. Version 1</h4>
+<h4 id="_version_1">8.2. Version 1</h4>
 <div class="ulist">
 <ul>
 <li>

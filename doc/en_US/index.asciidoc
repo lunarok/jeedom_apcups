@@ -6,7 +6,7 @@ include::presentation.asciidoc[]
 include::configuration.asciidoc[]
 
 '''
-== Configuration d'un onduleur du réseau
+=== Configuration of a UPS in network
 include::distant.asciidoc[]
 
 '''
@@ -18,7 +18,7 @@ include::faq.asciidoc[]
 include::troubleshoting.asciidoc[]
 
 '''
-== Evènements
+== Events
 include::events.asciidoc[]
 
 '''

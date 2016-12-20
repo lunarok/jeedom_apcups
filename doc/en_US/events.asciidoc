@@ -1,28 +1,28 @@
 
-Voici la liste des évènements que peux envoyer apcupsd
+Here is the list of events that can send apcupsd
 
 [panel,primary]
 .annoy me
 --
-When a shutdown is scheduled, and the time specified on the ANNOYME directive in the apcupsd.conf file expires, this event is generated.
+When a shutdown is scheduled, and the time specified on the directive ANNOYME expires in the apcupsd.conf file, this event is generated.
 --
 
 [panel,primary]
 .changeme
 --
-When apcupsd detects that the mains are on, but the battery is not functioning correctly, this event is generated. It is repeated every x hours.
+When apcupsd detects that the hands are on, but the battery is not functioning correctly, this event is generated. It was repeated every x hours.
 --
 
 [panel,primary]
 .commfailure
 --
-This event is generated each time the communications line with the computer is severed. This event is not detected on dumb signaling UPSes.
+This event is generated each time the communication line with the computer is severed. This event is not detected you dumb signaling UPSes.
 --
 
 [panel,primary]
 .commok
 --
-After a commfailure event is issued, when the communications to the computer is re-established, this event will be generated.
+A commfailure event is issued, when the communications to the computer is re-established, this event will be generated.
 --
 
 [panel,primary]
