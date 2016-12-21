@@ -12,8 +12,11 @@ The information provided is:
 * Model: the model of inverter
 * Status: the status of the UPS
 * Time on battery: the available run time
-* Voltage pile : tension de la pile
-* Evènement : tout évènement détecté par le service apcupsd qui est transmit en push à Jeedom
+* Voltage battery: battery voltage
+* Event: any event detected by the apcupsd service which is transmitted by push to Jeedom
 
 image::../images/apcups1.png[Image du produit]
 
+Vous pouvez trouver des onduleurs APC en suivant ce lien par exemple :
+
+* http://amzn.to/2hWtxJ4[Onduleur APC 400 prises FR]

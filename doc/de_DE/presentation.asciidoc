@@ -17,3 +17,6 @@ Die bereitgestellten Informationen sind :
 
 image::../images/apcups1.png[Image du produit]
 
+Vous pouvez trouver des onduleurs APC en suivant ce lien par exemple :
+
+* http://amzn.to/2hWtxJ4[Onduleur APC 400 prises FR]
