@@ -127,6 +127,16 @@ $eqLogics = eqLogic::byType('apcups');
               </div>
             </div>
 
+            <div class="form-group">
+              <label class="col-sm-3 control-label">{{Commande Alerte}}</label>
+              <div class="col-sm-3">
+                <input type="text"  class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="alert" />
+                <span class="input-group-btn">
+                  <a class="btn btn-default cursor" title="Rechercher une commande" id="bt_selectMailCmd"><i class="fa fa-list-alt"></i></a>
+                </span>
+              </div>
+            </div>
+
           </fieldset>
         </form>
       </div>

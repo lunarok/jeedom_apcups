@@ -74,6 +74,15 @@ class apcups extends eqLogic {
     }
   }
 
+  public function alertCmd($message) {
+      if ($this->getConfiguration('alert','') != '') {
+          $cmd = cmd::byId(str_replace('#','',$this->getConfiguration('alert')));
+          $options['title'] = 'Alerte APC UPS';
+          $options['message'] = "Onduleur hors secteur " . $message;
+          $cmd->execCmd($options);
+      }
+  }
+
   public function preUpdate() {
     if ($this->getConfiguration('addr') == '') {
       throw new Exception(__('L\adresse ne peut etre vide',__FILE__));
@@ -346,6 +355,9 @@ class apcupsCmd extends cmd {
       } else {
         $valeur = '0';
       }
+    }
+    if ($this->getConfiguration('data')=="status" && $valeur != 'ONLINE'){
+      $eqLogic->alertCmd($eqLogic->getName());
     }
     log::add('apcups', 'debug', $command . ' : ' . $valeur);
     if($this->getConfiguration('data')=="bcharge"){

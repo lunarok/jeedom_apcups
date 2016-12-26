@@ -30,7 +30,7 @@ function apcups_install() {
         $cron->setSchedule('*/2 * * * *');
         $cron->save();
     }
-    if (! eqlogic::byLogicalId('127.0.0.1', 'apcups')) {
+    if (!is_object(eqlogic::byLogicalId('127.0.0.1', 'apcups'))) {
         $local = new apcups();
         $local->setEqType_name('apcups');
         $local->setConfiguration('addr', '127.0.0.1');
@@ -39,7 +39,7 @@ function apcups_install() {
         $local->setIsEnable(true);
         $local->save();
 	}
-	    
+
 }
 
 function apcups_update() {
