@@ -2,7 +2,7 @@
 
 ==== Allgemeine Konfiguration
 
-Le plugin ne comporte pas de configuration générale.
+Das Plugin enthält keine allgemeine Konfiguration.
 
 A noter que lorsque le plugin est activé, il effectue deux actions :
 
