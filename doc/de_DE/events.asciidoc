@@ -1,5 +1,5 @@
 
-Voici la liste des évènements que peux envoyer apcupsd
+Hier ist die Liste der Ereignisse, die die APC USV senden kann.
 
 [panel,primary]
 .annoyme
