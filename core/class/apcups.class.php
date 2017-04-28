@@ -22,6 +22,14 @@ class apcups extends eqLogic {
 
   public static function health() {
     $return = array();
+    if (!is_object(eqlogic::byLogicalId('127.0.0.1', 'apcups'))) {
+        $return[] = array(
+      'test' => __('Apcupsd local non nécessaire', __FILE__),
+      'result' => __('OK', __FILE__),
+      'advice' => __('Onduleur local non présent', __FILE__),
+      'state' => true,
+    );
+	  } else {
     $pid = trim( shell_exec ('ps ax | grep "apcups" | grep -v "grep" | wc -l') );
     if ($pid != '' && $pid != '0') {
       $service = true;
@@ -34,6 +42,7 @@ class apcups extends eqLogic {
       'advice' => ($service) ? '' : __('Indique si le service apcupsd est démarré', __FILE__),
       'state' => $service,
     );
+    }
     return $return;
   }
 
