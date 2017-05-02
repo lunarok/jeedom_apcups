@@ -23,25 +23,25 @@ class apcups extends eqLogic {
   public static function health() {
     $return = array();
     if (!is_object(eqlogic::byLogicalId('127.0.0.1', 'apcups'))) {
-        $return[] = array(
-      'test' => __('Apcupsd local non nécessaire', __FILE__),
-      'result' => __('OK', __FILE__),
-      'advice' => __('Onduleur local non présent', __FILE__),
-      'state' => true,
-    );
-	  } else {
-    $pid = trim( shell_exec ('ps ax | grep "apcups" | grep -v "grep" | wc -l') );
-    if ($pid != '' && $pid != '0') {
-      $service = true;
+      $return[] = array(
+        'test' => __('Apcupsd local non nécessaire', __FILE__),
+        'result' => __('OK', __FILE__),
+        'advice' => __('Onduleur local non présent', __FILE__),
+        'state' => true,
+      );
     } else {
-      $service = false;
-    }
-    $return[] = array(
-      'test' => __('Apcupsd', __FILE__),
-      'result' => ($service) ? __('OK', __FILE__) : __('NOK', __FILE__),
-      'advice' => ($service) ? '' : __('Indique si le service apcupsd est démarré', __FILE__),
-      'state' => $service,
-    );
+      $pid = trim( shell_exec ('ps ax | grep "apcups" | grep -v "grep" | wc -l') );
+      if ($pid != '' && $pid != '0') {
+        $service = true;
+      } else {
+        $service = false;
+      }
+      $return[] = array(
+        'test' => __('Apcupsd', __FILE__),
+        'result' => ($service) ? __('OK', __FILE__) : __('NOK', __FILE__),
+        'advice' => ($service) ? '' : __('Indique si le service apcupsd est démarré', __FILE__),
+        'state' => $service,
+      );
     }
     return $return;
   }
@@ -71,14 +71,7 @@ class apcups extends eqLogic {
 
   public static function pull() {
     foreach (eqLogic::byType('apcups',true) as $apcups) {
-      log::add('apcups', 'debug', 'pull cron');
-        foreach ($apcups->getCmd('info') as $cmd) {
-          $value = $cmd->execute();
-          if ($value != $cmd->execCmd()) {
-            $cmd->event($value);
-          }
-        }
-        $apcups->refreshWidget();
+      $apcups->getInformations();
     }
   }
 
@@ -229,6 +222,8 @@ class apcups extends eqLogic {
     $apcupsCmd->setDisplay('generic_type','POWER');
     $apcupsCmd->save();
 
+    $this->getInformations();
+
   }
 
   public function toHtml($_version = 'dashboard') {
@@ -287,12 +282,34 @@ class apcups extends eqLogic {
   }
 
   public function getInformations() {
-    foreach ($this->getCmd('info') as $cmd) {
-      $value = $cmd->execute();
-      if ($value != $cmd->execCmd()) {
-        $cmd->event($value);
+    $addr = $eqLogic->getConfiguration('addr', '');
+    $port = $eqLogic->getConfiguration('port', '');
+    $puissance = $eqLogic->getConfiguration('puissance', '');
+    $apcupsd = $addr . ':' . $port;
+    foreach ($apcups->getCmd('info') as $cmd) {
+      //$command = 	"apcaccess | grep TIMELEFT | awk '{print $3}'";
+      if ($cmd->getLogicalId()=="model"){
+        $command = "/sbin/apcaccess status " . $apcupsd . " | grep " . $cmd->getLogicalId() . " | awk 'BEGIN {FS=\" : \"} {print $2}'";
+      } elseif ($cmd->getLogicalId()=="outpower"){
+        $command = "/sbin/apcaccess status " . $apcupsd . " | grep LOADPCT | awk '{print $3}'";
+      } else {
+        $command = "/sbin/apcaccess status " . $apcupsd . " | grep " . $cmd->getLogicalId() . " | awk '{print $3}'";
       }
+      $valeur = exec($command);
+      if ($cmd->getLogicalId()=="outpower"){
+        if (isset($puissance)) {
+          $valeur = $puissance * $valeur / '100' * '0.66';
+        } else {
+          $valeur = '0';
+        }
+      }
+      log::add('apcups', 'debug', $command . ' : ' . $valeur);
+      if($this->getConfiguration('data')=="bcharge"){
+        $eqLogic->batteryStatus($valeur);
+      }
+      $this->checkAndUpdateCmd($cmd->getLogicalId(), $valeur);
     }
+
     $this->refreshWidget();
   }
 
@@ -304,12 +321,7 @@ class apcups extends eqLogic {
     log::add('apcups', 'info', 'event ' . $event . ' pour ' . $hostname . ' de ' . $ip);
     $elogic = self::byLogicalId($hostname, 'apcups');
     if (is_object($elogic)) {
-      $elogic->setStatus('lastCommunication', date('Y-m-d H:i:s'));
-      $elogic->save();
-      $cmdlogic = apcupsCmd::byEqLogicIdAndLogicalId($elogic->getId(),'event');
-      $cmdlogic->setConfiguration('value', $event);
-      $cmdlogic->save();
-      $cmdlogic->event($event);
+      $this->checkAndUpdateCmd('event', $event);
       log::add('apcups', 'info', 'event ' . $event . ' pour ' . $hostname . ' de ' . $ip);
     }
   }
@@ -325,43 +337,7 @@ class apcups extends eqLogic {
 }
 
 class apcupsCmd extends cmd {
-  public function execute($_options = null) {
-    if($this->getConfiguration('data')=="event"){
-      return;
-    }
-    $eqLogic = $this->getEqLogic();
-    $addr = $eqLogic->getConfiguration('addr', '');
-    $port = $eqLogic->getConfiguration('port', '');
-    $puissance = $eqLogic->getConfiguration('puissance', '');
-    $apcupsd = $addr . ':' . $port;
 
-    log::add('apcups', 'debug', 'apcupsd : ' . $apcupsd . ' puissance ' . $puissance);
-
-    $test = strtoupper($this->getConfiguration('data'));
-    //$command = 	"apcaccess | grep TIMELEFT | awk '{print $3}'";
-    if ($this->getConfiguration('data')=="model"){
-      $command = "/sbin/apcaccess status " . $apcupsd . " | grep " . $test . " | awk 'BEGIN {FS=\" : \"} {print $2}'";
-    } elseif ($this->getConfiguration('data')=="outpower"){
-      $command = "/sbin/apcaccess status " . $apcupsd . " | grep LOADPCT | awk '{print $3}'";
-    } else {
-      $command = "/sbin/apcaccess status " . $apcupsd . " | grep " . $test . " | awk '{print $3}'";
-    }
-    $valeur = exec($command);
-    if ($this->getConfiguration('data')=="outpower"){
-      if (isset($puissance)) {
-        $valeur = $puissance * $valeur / '100' * '0.66';
-      } else {
-        $valeur = '0';
-      }
-    }
-    log::add('apcups', 'debug', $command . ' : ' . $valeur);
-    if($this->getConfiguration('data')=="bcharge"){
-      $eqLogic->batteryStatus($valeur);
-    }
-    $this->setConfiguration('value', $valeur);
-    $this->save();
-    return $valeur;
-  }
 }
 
 ?>
