@@ -96,10 +96,8 @@ class apcups extends eqLogic {
       $apcupsCmd->setName(__('Statut', __FILE__));
       $apcupsCmd->setEqLogic_id($this->id);
       $apcupsCmd->setLogicalId('status');
-      $apcupsCmd->setConfiguration('data', 'status');
       $apcupsCmd->setType('info');
       $apcupsCmd->setSubType('other');
-      $apcupsCmd->setIsHistorized(0);
       $apcupsCmd->save();
     }
 
@@ -110,10 +108,8 @@ class apcups extends eqLogic {
       $apcupsCmd->setName(__('Evènement', __FILE__));
       $apcupsCmd->setEqLogic_id($this->id);
       $apcupsCmd->setLogicalId('event');
-      $apcupsCmd->setConfiguration('data', 'event');
       $apcupsCmd->setType('info');
       $apcupsCmd->setSubType('other');
-      $apcupsCmd->setIsHistorized(0);
       $apcupsCmd->save();
     }
 
@@ -124,11 +120,9 @@ class apcups extends eqLogic {
       $apcupsCmd->setName(__('Temps sur batterie', __FILE__));
       $apcupsCmd->setEqLogic_id($this->id);
       $apcupsCmd->setLogicalId('timeleft');
-      $apcupsCmd->setConfiguration('data', 'timeleft');
       $apcupsCmd->setType('info');
       $apcupsCmd->setSubType('numeric');
       $apcupsCmd->setUnite( 'mn' );
-      $apcupsCmd->setIsHistorized(0);
       $apcupsCmd->save();
     }
 
@@ -139,11 +133,9 @@ class apcups extends eqLogic {
       $apcupsCmd->setName(__('Courant Entrant', __FILE__));
       $apcupsCmd->setEqLogic_id($this->id);
       $apcupsCmd->setLogicalId('linev');
-      $apcupsCmd->setConfiguration('data', 'linev');
       $apcupsCmd->setType('info');
       $apcupsCmd->setSubType('numeric');
       $apcupsCmd->setUnite( 'V' );
-      $apcupsCmd->setIsHistorized(0);
       $apcupsCmd->save();
     }
 
@@ -154,11 +146,9 @@ class apcups extends eqLogic {
       $apcupsCmd->setName(__('Voltage Pile', __FILE__));
       $apcupsCmd->setEqLogic_id($this->id);
       $apcupsCmd->setLogicalId('battv');
-      $apcupsCmd->setConfiguration('data', 'battv');
       $apcupsCmd->setType('info');
       $apcupsCmd->setSubType('numeric');
       $apcupsCmd->setUnite( 'V' );
-      $apcupsCmd->setIsHistorized(0);
       $apcupsCmd->save();
     }
 
@@ -169,10 +159,8 @@ class apcups extends eqLogic {
       $apcupsCmd->setName(__('Modèle d\'onduleur', __FILE__));
       $apcupsCmd->setEqLogic_id($this->id);
       $apcupsCmd->setLogicalId('model');
-      $apcupsCmd->setConfiguration('data', 'model');
       $apcupsCmd->setType('info');
       $apcupsCmd->setSubType('other');
-      $apcupsCmd->setIsHistorized(0);
       $apcupsCmd->save();
     }
 
@@ -183,11 +171,9 @@ class apcups extends eqLogic {
       $apcupsCmd->setName(__('% Charge', __FILE__));
       $apcupsCmd->setEqLogic_id($this->id);
       $apcupsCmd->setLogicalId('loadpct');
-      $apcupsCmd->setConfiguration('data', 'loadpct');
       $apcupsCmd->setType('info');
       $apcupsCmd->setSubType('numeric');
       $apcupsCmd->setUnite( '%' );
-      $apcupsCmd->setIsHistorized(0);
       $apcupsCmd->save();
     }
 
@@ -198,11 +184,9 @@ class apcups extends eqLogic {
       $apcupsCmd->setName(__('Batterie', __FILE__));
       $apcupsCmd->setEqLogic_id($this->id);
       $apcupsCmd->setLogicalId('bcharge');
-      $apcupsCmd->setConfiguration('data', 'bcharge');
       $apcupsCmd->setType('info');
       $apcupsCmd->setSubType('numeric');
       $apcupsCmd->setUnite( '%' );
-      $apcupsCmd->setIsHistorized(0);
       $apcupsCmd->save();
     }
 
@@ -213,11 +197,9 @@ class apcups extends eqLogic {
       $apcupsCmd->setName(__('Puissance fournie', __FILE__));
       $apcupsCmd->setEqLogic_id($this->id);
       $apcupsCmd->setLogicalId('outpower');
-      $apcupsCmd->setConfiguration('data', 'outpower');
       $apcupsCmd->setType('info');
       $apcupsCmd->setSubType('numeric');
       $apcupsCmd->setUnite( 'W' );
-      $apcupsCmd->setIsHistorized(0);
     }
     $apcupsCmd->setDisplay('generic_type','POWER');
     $apcupsCmd->save();

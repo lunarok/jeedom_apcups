@@ -50,9 +50,6 @@ function addCmdToTable(_cmd) {
         tr += '<td>';
 			tr += '<span class="cmdAttr" data-l1key="name"></span></td>';
         tr += '<td>';
-        tr += '<span class="cmdAttr" data-l1key="configuration" data-l2key="value"></span>';
-        tr += '</td>';
-        tr += '<td>';
         f (_cmd.subType == "binary") {
             tr += '<span class="expertModeVisible"><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="display" data-l2key="invertBinary" />{{Inverser}}</label></span>';
         }
