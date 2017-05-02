@@ -75,21 +75,11 @@ class apcups extends eqLogic {
         foreach ($apcups->getCmd('info') as $cmd) {
           $value = $cmd->execute();
           if ($value != $cmd->execCmd()) {
-            $cmd->setCollectDate('');
             $cmd->event($value);
           }
         }
         $apcups->refreshWidget();
     }
-  }
-
-  public function alertCmd($message) {
-      if ($this->getConfiguration('alert','') != '') {
-          $cmd = cmd::byId(str_replace('#','',$this->getConfiguration('alert')));
-          $options['title'] = 'Alerte APC UPS';
-          $options['message'] = "Onduleur hors secteur " . $message;
-          $cmd->execCmd($options);
-      }
   }
 
   public function preUpdate() {
@@ -319,7 +309,6 @@ class apcups extends eqLogic {
       $cmdlogic = apcupsCmd::byEqLogicIdAndLogicalId($elogic->getId(),'event');
       $cmdlogic->setConfiguration('value', $event);
       $cmdlogic->save();
-      $cmdlogic->setCollectDate('');
       $cmdlogic->event($event);
       log::add('apcups', 'info', 'event ' . $event . ' pour ' . $hostname . ' de ' . $ip);
     }
@@ -364,9 +353,6 @@ class apcupsCmd extends cmd {
       } else {
         $valeur = '0';
       }
-    }
-    if ($this->getConfiguration('data')=="status" && $valeur != 'ONLINE'){
-      $eqLogic->alertCmd($eqLogic->getName());
     }
     log::add('apcups', 'debug', $command . ' : ' . $valeur);
     if($this->getConfiguration('data')=="bcharge"){
