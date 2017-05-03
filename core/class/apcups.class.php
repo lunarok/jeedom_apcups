@@ -264,11 +264,11 @@ class apcups extends eqLogic {
   }
 
   public function getInformations() {
-    $addr = $eqLogic->getConfiguration('addr', '');
-    $port = $eqLogic->getConfiguration('port', '');
-    $puissance = $eqLogic->getConfiguration('puissance', '');
+    $addr = $this->getConfiguration('addr', '');
+    $port = $this->getConfiguration('port', '');
+    $puissance = $this->getConfiguration('puissance', '');
     $apcupsd = $addr . ':' . $port;
-    foreach ($apcups->getCmd('info') as $cmd) {
+    foreach ($this->getCmd('info') as $cmd) {
       //$command = 	"apcaccess | grep TIMELEFT | awk '{print $3}'";
       if ($cmd->getLogicalId()=="model"){
         $command = "/sbin/apcaccess status " . $apcupsd . " | grep " . $cmd->getLogicalId() . " | awk 'BEGIN {FS=\" : \"} {print $2}'";
