@@ -270,7 +270,9 @@ class apcups extends eqLogic {
     $apcupsd = $addr . ':' . $port;
     foreach ($this->getCmd('info') as $cmd) {
       //$command = 	"apcaccess | grep TIMELEFT | awk '{print $3}'";
-      if ($cmd->getLogicalId()=="model"){
+      if ($cmd->getLogicalId()=="event"){
+        continue;
+      } elseif ($cmd->getLogicalId()=="model"){
         $command = "/sbin/apcaccess status " . $apcupsd . " | grep " . strtoupper($cmd->getLogicalId()) . " | awk 'BEGIN {FS=\" : \"} {print $2}'";
       } elseif ($cmd->getLogicalId()=="outpower"){
         $command = "/sbin/apcaccess status " . $apcupsd . " | grep LOADPCT | awk '{print $3}'";
