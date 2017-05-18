@@ -227,39 +227,6 @@ class apcups extends eqLogic {
         $replace['#' . $cmd->getLogicalId() . '_history#'] = 'history cursor';
       }
     }
-
-    $bcharge = $this->getCmd(null, 'bcharge');
-    $replace['#battery_charge#'] = is_object($bcharge) ? $bcharge->getConfiguration('value') : '';
-    $replace['#battery_charge_id#'] = is_object($bcharge) ? $bcharge->getId() : '';
-
-    $linev = $this->getCmd(null, 'linev');
-    $replace['#input_current#'] = is_object($linev) ? $linev->getConfiguration('value') : '';
-    $replace['#input_current_id#'] = is_object($linev) ? $linev->getId() : '';
-
-    $battv = $this->getCmd(null, 'battv');
-    $replace['#battery_voltage#'] = is_object($battv) ? $battv->getConfiguration('value') : '';
-    $replace['#battery_voltage_id#'] = is_object($battv) ? $battv->getId() : '';
-
-    $status = $this->getCmd(null, 'status');
-    $replace['#ups_status#'] = is_object($status) ? $status->getConfiguration('value') : '';
-    $replace['#ups_status_id#'] = is_object($status) ? $status->getId() : '';
-
-    $loadpct = $this->getCmd(null, 'loadpct');
-    $replace['#ups_load#'] = is_object($loadpct) ? $loadpct->getConfiguration('value') : '';
-    $replace['#ups_load_id#'] = is_object($loadpct) ? $loadpct->getId() : '';
-
-    $outpower = $this->getCmd(null, 'outpower');
-    $replace['#output_power#'] = is_object($outpower) ? $outpower->getConfiguration('value') : '';
-    $replace['#output_power_id#'] = is_object($outpower) ? $outpower->getId() : '';
-
-    $timeleft = $this->getCmd(null, 'timeleft');
-    $replace['#battery_runtime#'] = is_object($timeleft) ? $timeleft->getConfiguration('value') : '';
-    $replace['#battery_runtime_id#'] = is_object($timeleft) ? $timeleft->getId() : '';
-
-    $model = $this->getCmd(null, 'model');
-    $replace['#ups_model#'] = is_object($model) ? $model->getConfiguration('value') : '';
-
-
     return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'apcups', 'apcups')));
   }
 
