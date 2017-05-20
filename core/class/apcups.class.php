@@ -240,11 +240,11 @@ class apcups extends eqLogic {
       if ($cmd->getLogicalId()=="event"){
         continue;
       } elseif ($cmd->getLogicalId()=="model"){
-        $command = "/sbin/apcaccess status " . $apcupsd . " | grep " . strtoupper($cmd->getLogicalId()) . " | awk 'BEGIN {FS=\" : \"} {print $2}'";
+        $command = "/sbin/apcaccess status " . $apcupsd . " | grep ^" . strtoupper($cmd->getLogicalId()) . " | awk 'BEGIN {FS=\" : \"} {print $2}'";
       } elseif ($cmd->getLogicalId()=="outpower"){
-        $command = "/sbin/apcaccess status " . $apcupsd . " | grep LOADPCT | awk '{print $3}'";
+        $command = "/sbin/apcaccess status " . $apcupsd . " | grep ^LOADPCT | awk '{print $3}'";
       } else {
-        $command = "/sbin/apcaccess status " . $apcupsd . " | grep " . strtoupper($cmd->getLogicalId()) . " | awk '{print $3}'";
+        $command = "/sbin/apcaccess status " . $apcupsd . " | grep ^" . strtoupper($cmd->getLogicalId()) . " | awk '{print $3}'";
       }
       $valeur = exec($command);
       if ($cmd->getLogicalId()=="outpower"){
