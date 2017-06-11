@@ -231,34 +231,76 @@ class apcups extends eqLogic {
   }
 
   public function getInformations() {
-    $addr = $this->getConfiguration('addr', '');
-    $port = $this->getConfiguration('port', '');
+    $addr = $this->getConfiguration('addr', '127.0.0.1');
+    $port = $this->getConfiguration('port', 3551);
     $puissance = $this->getConfiguration('puissance', '');
-    $apcupsd = $addr . ':' . $port;
-    foreach ($this->getCmd('info') as $cmd) {
-      //$command = 	"apcaccess | grep TIMELEFT | awk '{print $3}'";
-      if ($cmd->getLogicalId()=="event"){
+    $command = sprintf("/sbin/apcaccess status %s:%d", $addr, $port);
+
+    # execute shell command
+    $apcaccess = shell_exec(escapeshellcmd($command));
+    if (is_null($apcaccess) || empty($apcaccess)) {
+      throw new Exception(__("The command", __FILE__) . " $command " . __('has failed or not returned any string.', __FILE__));
+    }
+    log::add('apcups', 'debug', "Get information string $apcaccess from apcaccess");
+
+    # parse informations
+    $informations = [];
+    foreach (explode(PHP_EOL, $apcaccess) as $row) {
+      if (empty($row)) {
         continue;
-      } elseif ($cmd->getLogicalId()=="model"){
-        $command = "/sbin/apcaccess status " . $apcupsd . " | grep ^" . strtoupper($cmd->getLogicalId()) . " | awk 'BEGIN {FS=\" : \"} {print $2}'";
-      } elseif ($cmd->getLogicalId()=="outpower"){
-        $command = "/sbin/apcaccess status " . $apcupsd . " | grep ^LOADPCT | awk '{print $3}'";
-      } else {
-        $command = "/sbin/apcaccess status " . $apcupsd . " | grep ^" . strtoupper($cmd->getLogicalId()) . " | awk '{print $3}'";
       }
-      $valeur = exec($command);
-      if ($cmd->getLogicalId()=="outpower"){
-        if (isset($puissance)) {
-          $valeur = $puissance * $valeur / '100' * '0.66';
-        } else {
-          $valeur = '0';
-        }
+      $info = explode(':', $row, 2);
+  	  if (count($info) != 2) {
+        log::add('apcups', 'debug', "The information row $row is not parsable");
+        continue;
       }
-      log::add('apcups', 'debug', $command . ' : ' . $valeur);
-      if($this->getConfiguration('data')=="bcharge"){
-        $eqLogic->batteryStatus($valeur);
+  	  $key = trim($info[0]);
+  	  $value = trim($info[1]);
+      preg_match('/(?P<float>(?P<integer>\d+)(\.\d+)?)/', $value, $matches);
+      preg_match('/(?P<word>[a-zA-Z0-9_.-]+)/', $value, $matches_word);
+  	  $informations[$key] = [
+        'raw' => $value,
+        'integer' => isset($matches['integer']) ? $matches['integer'] : null,
+        'float' => isset($matches['float']) ? $matches['float'] : null,
+        'word' => isset($matches_word['word']) ? $matches_word['word'] : null
+      ];
+      log::add('apcups', 'debug', "Get information key $key with value $value");
+	}
+
+    # loop for each command and update its infos
+    foreach ($this->getCmd('info') as $cmd) {
+      $key = strtoupper($cmd->getLogicalId());
+      switch ($cmd->getLogicalId()) {
+        case 'event':
+          continue;
+        case 'model':
+          if (isset($informations[$key])) {
+            $value = $informations[$key]['raw'];
+          }
+          break;
+        case 'outpower':
+          if (isset($puissance) && isset($informations['LOADPCT'])) {
+            $value = $puissance * $informations['LOADPCT']['float'] / 100 * 0.66;
+          } else {
+            $value = 0;
+          }
+          break;
+        default:
+          if (isset($informations[$key])) {
+            if ($cmd->getSubType() == 'numeric') {
+              $value = $informations[$key]['float'];
+            } else {
+              $value = $informations[$key]['word'];
+            }
+          }
+          break;
       }
-      $this->checkAndUpdateCmd($cmd->getLogicalId(), $valeur);
+
+      log::add('apcups', 'debug', $command . ' : ' . $value);
+      if($cmd->getLogicalId() == 'bcharge') {
+        $this->batteryStatus($value);
+      }
+      $this->checkAndUpdateCmd($cmd->getLogicalId(), $value);
     }
 
     $this->refreshWidget();
