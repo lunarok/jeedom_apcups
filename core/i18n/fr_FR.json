@@ -24,7 +24,9 @@
         "Paramètres": "Paramètres"
     },
     "plugins\/apcups\/desktop\/js\/apcups.js": {
-        "Historiser": "Historiser"
+        "Historiser": "Historiser",
+        "Nom de la commande": "Nom de la commande",
+        "Tester": "Tester"
     },
     "plugins\/apcups\/core\/class\/apcups.class.php": {
         "Statut": "Statut",
@@ -36,6 +38,11 @@
         "% Charge": "% Charge",
         "Batterie": "Batterie",
         "Puissance fournie": "Puissance fournie",
-        "L\\adresse ne peut etre vide": "L\\adresse ne peut etre vide"
+        "Apcupsd": "Apcupsd",
+        "NOK": "NOK",
+        "Indique si le service apcupsd est démarré": "Indique si le service apcupsd est démarré",
+        "The command": "La commande",
+        "has failed or not returned any string.": "a echouée ou n'a pas retournée de résultat.",
+        "L'adresse ne peut etre vide": "L'adresse ne peut etre vide"
     }
 }
