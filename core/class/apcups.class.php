@@ -77,7 +77,7 @@ class apcups extends eqLogic {
 
   public function preUpdate() {
     if ($this->getConfiguration('addr') == '') {
-      throw new Exception(__('L\adresse ne peut etre vide',__FILE__));
+      throw new Exception(__('L\'adresse ne peut etre vide',__FILE__));
     }
     if ($this->getConfiguration('port') == '') {
       throw new Exception(__('Le port ne peut etre vide',__FILE__));
