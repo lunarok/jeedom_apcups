@@ -296,7 +296,7 @@ class apcups extends eqLogic {
           break;
       }
 
-      log::add('apcups', 'debug', $command . ' : ' . $value);
+      log::add('apcups', 'debug', $cmd->getLogicalId() . ' : ' . $value);
       if($cmd->getLogicalId() == 'bcharge') {
         $this->batteryStatus($value);
       }
