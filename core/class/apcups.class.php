@@ -272,7 +272,8 @@ class apcups extends eqLogic {
       $key = strtoupper($cmd->getLogicalId());
       switch ($cmd->getLogicalId()) {
         case 'event':
-          continue;
+          log::add('apcups', 'debug', ' => ignore');
+          continue 2;
         case 'model':
           if (isset($informations[$key])) {
             $value = $informations[$key]['raw'];
