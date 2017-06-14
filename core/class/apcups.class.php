@@ -281,16 +281,19 @@ class apcups extends eqLogic {
     # loop for each command and update its infos
     foreach ($this->getCmd('info') as $cmd) {
       $key = strtoupper($cmd->getLogicalId());
+      log::add('apcups', 'debug', 'Update command ' . $cmd->getLogicalId());
       switch ($cmd->getLogicalId()) {
         case 'event':
           log::add('apcups', 'debug', ' => ignore');
           continue 2;
         case 'model':
+          log::add('apcups', 'debug', ' => apply model case');
           if (isset($informations[$key])) {
             $value = $informations[$key]['raw'];
           }
           break;
         case 'outpower':
+          log::add('apcups', 'debug', ' => apply outpower case');
           if (isset($puissance) && isset($informations['LOADPCT'])) {
             $value = $puissance * $informations['LOADPCT']['float'] / 100 * 0.66;
           } else {
@@ -298,6 +301,7 @@ class apcups extends eqLogic {
           }
           break;
         default:
+          log::add('apcups', 'debug', ' => apply default case');
           if (isset($informations[$key])) {
             if ($cmd->getSubType() == 'numeric') {
               $value = $informations[$key]['float'];
@@ -308,10 +312,11 @@ class apcups extends eqLogic {
           break;
       }
 
-      log::add('apcups', 'debug', $cmd->getLogicalId() . ' : ' . $value);
       if($cmd->getLogicalId() == 'bcharge') {
+        log::add('apcups', 'debug', ' => update battery status');
         $this->batteryStatus($value);
       }
+      log::add('apcups', 'debug', ' => update command ' . $cmd->getLogicalId() . ' with ' . $value);
       $this->checkAndUpdateCmd($cmd->getLogicalId(), $value);
     }
 
