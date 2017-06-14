@@ -232,7 +232,7 @@ class apcups extends eqLogic {
 
   /**
    * Fetch new informations from apcups daemon
-   * 
+   *
    * @return array of information
    *     each key of this array is composed of the following sub keys
    *        - raw : the raw value from apcaccess
@@ -277,16 +277,16 @@ class apcups extends eqLogic {
       ];
       log::add('apcups', 'debug', "Get information key $key with value $value");
 	}
-    
+
     return $informations;
   }
-  
+
   /**
    * Update all command of this equipment with new informations
    */
   protected function updateCommands() {
 	$informations = $this->getInformations();
-    
+
     # loop for each command and update its infos
     foreach ($this->getCmd('info') as $cmd) {
       $key = strtoupper($cmd->getLogicalId());
