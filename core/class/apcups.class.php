@@ -230,6 +230,17 @@ class apcups extends eqLogic {
     return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'apcups', 'apcups')));
   }
 
+  /**
+   * Fetch new informations from apcups daemon
+   * 
+   * @return array of information
+   *     each key of this array is composed of the following sub keys
+   *        - raw : the raw value from apcaccess
+   *        - integer : the first integer value available or null
+   *        - float : the first float available or null
+   *        - word : the first word available, it's the first piece
+   *             of letters before the first space or the end of line
+   */
   public function getInformations() {
     $addr = $this->getConfiguration('addr', '127.0.0.1');
     $port = $this->getConfiguration('port', 3551);
