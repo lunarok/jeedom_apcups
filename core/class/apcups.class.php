@@ -310,12 +310,13 @@ class apcups extends eqLogic {
     $hostname = init('hostname');
     $event = init('event');
     $ip = getClientIp();
-    echo $ip;
-    log::add('apcups', 'info', 'event ' . $event . ' pour ' . $hostname . ' de ' . $ip);
+    log::add('apcups', 'info', "reçu event '$event' pour '$hostname' de '$ip'");
     $elogic = self::byLogicalId($hostname, 'apcups');
     if (is_object($elogic)) {
-      $this->checkAndUpdateCmd('event', $event);
-      log::add('apcups', 'info', 'event ' . $event . ' pour ' . $hostname . ' de ' . $ip);
+      $elogic->checkAndUpdateCmd('event', $event);
+      log::add('apcups', 'info', "mise à jour event '$event' pour '$hostname' de $ip");
+    } else {
+      log::add('apcups', 'warning', "echec de mise à jour event '$event' pour '$hostname' de $ip : $hostname introuvable");
     }
   }
 
