@@ -71,7 +71,7 @@ class apcups extends eqLogic {
 
   public static function pull() {
     foreach (eqLogic::byType('apcups',true) as $apcups) {
-      $apcups->getInformations();
+      $apcups->updateCommands();
     }
   }
 
@@ -204,7 +204,7 @@ class apcups extends eqLogic {
     $apcupsCmd->setDisplay('generic_type','POWER');
     $apcupsCmd->save();
 
-    $this->getInformations();
+    $this->updateCommands();
 
   }
 
@@ -230,6 +230,17 @@ class apcups extends eqLogic {
     return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'apcups', 'apcups')));
   }
 
+  /**
+   * Fetch new informations from apcups daemon
+   *
+   * @return array of information
+   *     each key of this array is composed of the following sub keys
+   *        - raw : the raw value from apcaccess
+   *        - integer : the first integer value available or null
+   *        - float : the first float available or null
+   *        - word : the first word available, it's the first piece
+   *             of letters before the first space or the end of line
+   */
   public function getInformations() {
     $addr = $this->getConfiguration('addr', '127.0.0.1');
     $port = $this->getConfiguration('port', 3551);
@@ -267,18 +278,31 @@ class apcups extends eqLogic {
       log::add('apcups', 'debug', "Get information key $key with value $value");
 	}
 
+    return $informations;
+  }
+
+  /**
+   * Update all command of this equipment with new informations
+   */
+  protected function updateCommands() {
+	$informations = $this->getInformations();
+
     # loop for each command and update its infos
     foreach ($this->getCmd('info') as $cmd) {
       $key = strtoupper($cmd->getLogicalId());
+      log::add('apcups', 'debug', 'Update command ' . $cmd->getLogicalId());
       switch ($cmd->getLogicalId()) {
         case 'event':
-          continue;
+          log::add('apcups', 'debug', ' => ignore');
+          continue 2;
         case 'model':
+          log::add('apcups', 'debug', ' => apply model case');
           if (isset($informations[$key])) {
             $value = $informations[$key]['raw'];
           }
           break;
         case 'outpower':
+          log::add('apcups', 'debug', ' => apply outpower case');
           if (isset($puissance) && isset($informations['LOADPCT'])) {
             $value = $puissance * $informations['LOADPCT']['float'] / 100 * 0.66;
           } else {
@@ -286,6 +310,7 @@ class apcups extends eqLogic {
           }
           break;
         default:
+          log::add('apcups', 'debug', ' => apply default case');
           if (isset($informations[$key])) {
             if ($cmd->getSubType() == 'numeric') {
               $value = $informations[$key]['float'];
@@ -296,10 +321,11 @@ class apcups extends eqLogic {
           break;
       }
 
-      log::add('apcups', 'debug', $command . ' : ' . $value);
       if($cmd->getLogicalId() == 'bcharge') {
+        log::add('apcups', 'debug', ' => update battery status');
         $this->batteryStatus($value);
       }
+      log::add('apcups', 'debug', ' => update command ' . $cmd->getLogicalId() . ' with ' . $value);
       $this->checkAndUpdateCmd($cmd->getLogicalId(), $value);
     }
 
@@ -310,12 +336,13 @@ class apcups extends eqLogic {
     $hostname = init('hostname');
     $event = init('event');
     $ip = getClientIp();
-    echo $ip;
-    log::add('apcups', 'info', 'event ' . $event . ' pour ' . $hostname . ' de ' . $ip);
+    log::add('apcups', 'info', "reçu event '$event' pour '$hostname' de '$ip'");
     $elogic = self::byLogicalId($hostname, 'apcups');
     if (is_object($elogic)) {
-      $this->checkAndUpdateCmd('event', $event);
-      log::add('apcups', 'info', 'event ' . $event . ' pour ' . $hostname . ' de ' . $ip);
+      $elogic->checkAndUpdateCmd('event', $event);
+      log::add('apcups', 'info', "mise à jour event '$event' pour '$hostname' de $ip");
+    } else {
+      log::add('apcups', 'warning', "echec de mise à jour event '$event' pour '$hostname' de $ip : $hostname introuvable");
     }
   }
 
