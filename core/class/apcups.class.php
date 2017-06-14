@@ -71,7 +71,7 @@ class apcups extends eqLogic {
 
   public static function pull() {
     foreach (eqLogic::byType('apcups',true) as $apcups) {
-      $apcups->getInformations();
+      $apcups->updateCommands();
     }
   }
 
@@ -204,7 +204,7 @@ class apcups extends eqLogic {
     $apcupsCmd->setDisplay('generic_type','POWER');
     $apcupsCmd->save();
 
-    $this->getInformations();
+    $this->updateCommands();
 
   }
 
@@ -277,7 +277,16 @@ class apcups extends eqLogic {
       ];
       log::add('apcups', 'debug', "Get information key $key with value $value");
 	}
-
+    
+    return $informations;
+  }
+  
+  /**
+   * Update all command of this equipment with new informations
+   */
+  protected function updateCommands() {
+	$informations = $this->getInformations();
+    
     # loop for each command and update its infos
     foreach ($this->getCmd('info') as $cmd) {
       $key = strtoupper($cmd->getLogicalId());
