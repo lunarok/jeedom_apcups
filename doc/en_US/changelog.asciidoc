@@ -1,3 +1,17 @@
+==== Version 2017-06-15
+
+* Fonctionnalités
+
+** Ajout de la remonté du niveau de batterie de l'onduleur dans la page "Batteries" de Jeedom
+
+* Améliorations
+
+** Refonte du système de lecture des valeurs de l'onduleur
+
+* Bug Fixes
+
+** Correction d'un bug de remonté des events
+
 ==== Version 1.1
 
 Transition to the system of dependencies 2.0
