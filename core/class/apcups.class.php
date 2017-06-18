@@ -287,7 +287,7 @@ class apcups extends eqLogic {
 	$informations = $this->getInformations();
 	$puissance = $this->getConfiguration('puissance', '');
 
-    # loop for each command and update its infos
+    # loop for each command and update its infos according to some specific case
     foreach ($this->getCmd('info') as $cmd) {
       $key = strtoupper($cmd->getLogicalId());
       log::add('apcups', 'debug', 'Update command ' . $cmd->getLogicalId());
