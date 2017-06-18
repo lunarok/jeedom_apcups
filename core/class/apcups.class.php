@@ -244,7 +244,6 @@ class apcups extends eqLogic {
   public function getInformations() {
     $addr = $this->getConfiguration('addr', '127.0.0.1');
     $port = $this->getConfiguration('port', 3551);
-    $puissance = $this->getConfiguration('puissance', '');
     $command = sprintf("/sbin/apcaccess status %s:%d", $addr, $port);
 
     # execute shell command
@@ -286,6 +285,7 @@ class apcups extends eqLogic {
    */
   protected function updateCommands() {
 	$informations = $this->getInformations();
+	$puissance = $this->getConfiguration('puissance', '');
 
     # loop for each command and update its infos
     foreach ($this->getCmd('info') as $cmd) {
