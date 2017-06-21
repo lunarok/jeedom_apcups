@@ -25,8 +25,8 @@
     },
     "plugins\/apcups\/desktop\/js\/apcups.js": {
         "Historiser": "Historizar",
-        "Nom de la commande": "Nom de la commande",
-        "Tester": "Tester"
+        "Nom de la commande": "Nombre del comando",
+        "Tester": "Prueba"
     },
     "plugins\/apcups\/core\/class\/apcups.class.php": {
         "Statut": "Estado",
@@ -40,9 +40,9 @@
         "Puissance fournie": "Energía suministrada",
         "Apcupsd": "Apcupsd",
         "NOK": "NOK",
-        "Indique si le service apcupsd est démarré": "Indique si le service apcupsd est démarré",
-        "The command": "La commande",
-        "has failed or not returned any string.": "a echouée ou n'a pas retournée de résultat.",
-        "L'adresse ne peut etre vide": "L'adresse ne peut etre vide"
+        "Indique si le service apcupsd est démarré": "Indicar si el servicio apcupsd esta iniciado",
+        "The command": "El comando",
+        "has failed or not returned any string.": "Falló o no devolvió un resultado.",
+        "L'adresse ne peut etre vide": "La dirección no puede estar vacía"
     }
 }
