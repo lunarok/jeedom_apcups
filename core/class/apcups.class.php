@@ -340,21 +340,28 @@ class apcups extends eqLogic {
     $hostname = init('hostname');
     $event = init('event');
     $ip = getClientIp();
-    log::add('apcups', 'info', "reçu event '$event' pour '$hostname' de '$ip'");
+    log::add('apcups', 'debug', "reçu event '$event' pour '$hostname' de '$ip'");
     $elogic = self::byLogicalId($hostname, 'apcups');
     if (is_object($elogic)) {
       $elogic->checkAndUpdateCmd('event', $event);
-      log::add('apcups', 'info', "mise à jour event '$event' pour '$hostname' de $ip");
+      log::add('apcups', 'info', "Mise à jour de la commande event '$event' pour '$hostname'");
     } else {
-      log::add('apcups', 'warning', "echec de mise à jour event '$event' pour '$hostname' de $ip : $hostname introuvable");
+      log::add('apcups', 'warning', "Echec de la mise à jour de la commande event '$event' pour '$hostname' de $ip : $hostname introuvable");
     }
   }
 
+  /**
+   * Event entry point of Jeedom
+   */
   public static function event() {
     $messageType = init('messagetype');
-    log::add('apcups', 'info', 'event');
+    log::add('apcups', 'debug', "event reçu de la jeeApi : $messageType");
     switch ($messageType) {
-      case 'saveEvent' : log::add('apcups', 'info', 'event'); self::saveEvent(); break;
+      case 'saveEvent' :
+        self::saveEvent();
+        break;
+      default:
+        log::add('apcups', 'warning', "Le type d'evenement ''$messageType' n'est pas supporté par " . __CLASS__);
     }
   }
 
