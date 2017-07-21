@@ -18,7 +18,6 @@
 if (!isConnect('admin')) {
     throw new Exception('401 Unauthorized');
 }
-$eqLogic = apcups::byId(init('id'));
 ?>
 
 <span class='pull-right'>
