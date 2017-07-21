@@ -23,8 +23,10 @@ try {
     if (!isConnect('admin')) {
         throw new Exception(__('401 - Accès non autorisé', __FILE__));
     }
-    
-     if (init('action') == 'getApcups') {
+
+    ajax::init();
+
+    if (init('action') == 'getApcups') {
         $apcups = apcups::byId(init('id'));
         if (!is_object($apcups)) {
             throw new Exception(__('Apcups inconnu verifié l\'id', __FILE__));
@@ -37,9 +39,16 @@ try {
             $return['cmd'][] = $cmd_info;
         }
         ajax::success($return);
-     }
+    }
 
-    
+    if (init('action') == 'getValues') {
+        $eqLogic = apcups::byId(init('id'));
+        if (!is_object($eqLogic)) {
+            throw new Exception(__('Apcups inconnu verifié l\'id', __FILE__));
+        }
+		ajax::success($eqLogic->getInformations());
+	}
+
     throw new Exception(__('Aucune methode correspondante à : ', __FILE__) . init('action'));
     /*     * *********Catch exeption*************** */
 } catch (Exception $e) {
