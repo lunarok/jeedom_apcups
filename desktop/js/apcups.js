@@ -15,6 +15,11 @@
  * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
  */
 
+$('#bt_valuesmodal').on('click', function () {
+     $('#md_modal').dialog({title: "{{Valeurs UPS}}"});
+     $('#md_modal').load('index.php?v=d&plugin=apcups&modal=values&id=' + $('.eqLogicAttr[data-l1key=id]').value()).dialog('open');
+});
+
 function addCmdToTable(_cmd) {
     if (!isset(_cmd)) {
         var _cmd = {configuration: {}};
