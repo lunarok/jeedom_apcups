@@ -234,12 +234,14 @@ class apcups extends eqLogic {
    * Fetch new informations from apcups daemon
    *
    * @return array of information
-   *     each key of this array is composed of the following sub keys
+   *     each key contains the name of an item given by apcaccess
+   *     each value of this array is composed of the following sub keys
    *        - raw : the raw value from apcaccess
    *        - integer : the first integer value available or null
    *        - float : the first float available or null
    *        - word : the first word available, it's the first piece
    *             of letters before the first space or the end of line
+   *        - unit : the full text unit name (if available)
    */
   public function getInformations() {
     $addr = $this->getConfiguration('addr', '127.0.0.1');
@@ -268,11 +270,13 @@ class apcups extends eqLogic {
   	  $value = trim($info[1]);
       preg_match('/(?P<float>(?P<integer>\d+)(\.\d+)?)/', $value, $matches);
       preg_match('/(?P<word>[a-zA-Z0-9_.-]+)/', $value, $matches_word);
+      preg_match('/(?P<unit>(volts|percent|seconds|minutes))/i', $value, $matches_unit);
   	  $informations[$key] = [
         'raw' => $value,
         'integer' => isset($matches['integer']) ? $matches['integer'] : null,
         'float' => isset($matches['float']) ? $matches['float'] : null,
-        'word' => isset($matches_word['word']) ? $matches_word['word'] : null
+        'word' => isset($matches_word['word']) ? $matches_word['word'] : null,
+        'unit' => isset($matches_unit['unit']) ? $matches_unit['unit'] : null
       ];
       log::add('apcups', 'debug', "Get information key $key with value $value");
 	}
