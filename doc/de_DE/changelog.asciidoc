@@ -1,16 +1,16 @@
 ==== Version 2017-06-15
 
-* Fonctionnalités
+* Eigenschaften :
 
-** Ajout de la remonté du niveau de batterie de l'onduleur dans la page "Batteries" de Jeedom
+** Ergänzung der Batterieladung des Wechselrichters auf der "Batterien" Seite von Jeedom
 
-* Améliorations
+* Verbesserungen
 
-** Refonte du système de lecture des valeurs de l'onduleur
+** Überarbeitung des Systems, die Werte des Wechselrichters auszulesen
 
-* Bug Fixes
+* Fehlerbehebung
 
-** Correction d'un bug de remonté des events
+** Ein Fehler bei der Rückmeldung von Ereignissen wurde behoben
 
 ==== Version 1.1
 
