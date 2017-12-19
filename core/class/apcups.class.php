@@ -234,12 +234,14 @@ class apcups extends eqLogic {
    * Fetch new informations from apcups daemon
    *
    * @return array of information
-   *     each key of this array is composed of the following sub keys
+   *     each key contains the name of an item given by apcaccess
+   *     each value of this array is composed of the following sub keys
    *        - raw : the raw value from apcaccess
    *        - integer : the first integer value available or null
    *        - float : the first float available or null
    *        - word : the first word available, it's the first piece
    *             of letters before the first space or the end of line
+   *        - unit : the full text unit name (if available)
    */
   public function getInformations() {
     $addr = $this->getConfiguration('addr', '127.0.0.1');
@@ -268,11 +270,13 @@ class apcups extends eqLogic {
   	  $value = trim($info[1]);
       preg_match('/(?P<float>(?P<integer>\d+)(\.\d+)?)/', $value, $matches);
       preg_match('/(?P<word>[a-zA-Z0-9_.-]+)/', $value, $matches_word);
+      preg_match('/(?P<unit>(volts|percent|seconds|minutes))/i', $value, $matches_unit);
   	  $informations[$key] = [
         'raw' => $value,
         'integer' => isset($matches['integer']) ? $matches['integer'] : null,
         'float' => isset($matches['float']) ? $matches['float'] : null,
-        'word' => isset($matches_word['word']) ? $matches_word['word'] : null
+        'word' => isset($matches_word['word']) ? $matches_word['word'] : null,
+        'unit' => isset($matches_unit['unit']) ? $matches_unit['unit'] : null
       ];
       log::add('apcups', 'debug', "Get information key $key with value $value");
 	}
@@ -336,21 +340,28 @@ class apcups extends eqLogic {
     $hostname = init('hostname');
     $event = init('event');
     $ip = getClientIp();
-    log::add('apcups', 'info', "reçu event '$event' pour '$hostname' de '$ip'");
+    log::add('apcups', 'debug', "reçu event '$event' pour '$hostname' de '$ip'");
     $elogic = self::byLogicalId($hostname, 'apcups');
     if (is_object($elogic)) {
       $elogic->checkAndUpdateCmd('event', $event);
-      log::add('apcups', 'info', "mise à jour event '$event' pour '$hostname' de $ip");
+      log::add('apcups', 'info', "Mise à jour de la commande event '$event' pour '$hostname'");
     } else {
-      log::add('apcups', 'warning', "echec de mise à jour event '$event' pour '$hostname' de $ip : $hostname introuvable");
+      log::add('apcups', 'warning', "Echec de la mise à jour de la commande event '$event' pour '$hostname' de $ip : $hostname introuvable");
     }
   }
 
+  /**
+   * Event entry point of Jeedom
+   */
   public static function event() {
     $messageType = init('messagetype');
-    log::add('apcups', 'info', 'event');
+    log::add('apcups', 'debug', "event reçu de la jeeApi : $messageType");
     switch ($messageType) {
-      case 'saveEvent' : log::add('apcups', 'info', 'event'); self::saveEvent(); break;
+      case 'saveEvent' :
+        self::saveEvent();
+        break;
+      default:
+        log::add('apcups', 'warning', "Le type d'evenement ''$messageType' n'est pas supporté par " . __CLASS__);
     }
   }
 

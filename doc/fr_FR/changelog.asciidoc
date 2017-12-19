@@ -1,3 +1,14 @@
+==== Version 2017-07-21
+
+* Fonctionnalités
+
+** Ajout d'un modal pour afficher l'ensemble des valeurs de l'UPS (en mode expert)
+** Ajout de l'API apcups en Javascript
+
+* Améliorations
+
+** Nettoyage des logs liés à la remontée des évenements.
+
 ==== Version 2017-06-15
 
 * Fonctionnalités
