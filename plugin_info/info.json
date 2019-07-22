@@ -4,7 +4,7 @@
     "description" : "Le plugin permet de récupérer les informations d'un onduleur APC branché en USB par défaut. Mais il est possible de récupérer les infos via le réseau. Il utilise apcupsd.",
     "licence" : "AGPL",
     "author" : "lunarok",
-    "require" : "2.4",
+    "require" : "3.3.24",
     "category" : "monitoring",
     "hasDependency" : 1,
     "language" : ["fr_FR","en_US"],
