@@ -18,8 +18,6 @@
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class apcups extends eqLogic {
-  public static $_widgetPossibility = array('custom' => true);
-
   public static function health() {
     $return = array();
     if (!is_object(eqlogic::byLogicalId('127.0.0.1', 'apcups'))) {
@@ -69,7 +67,7 @@ class apcups extends eqLogic {
     passthru('sudo /bin/bash ' . $install_path . '/install.sh ' . $install_path . ' ' . $url . ' > ' . log::getPathToLog('apcups_dep') . ' 2>&1 &');
   }
 
-  public static function pull() {
+  public static function cron() {
     foreach (eqLogic::byType('apcups',true) as $apcups) {
       $apcups->updateCommands();
     }
@@ -205,29 +203,6 @@ class apcups extends eqLogic {
     $apcupsCmd->save();
 
     $this->updateCommands();
-
-  }
-
-  public function toHtml($_version = 'dashboard') {
-    $replace = $this->preToHtml($_version);
-    if (!is_array($replace)) {
-      return $replace;
-    }
-    $version = jeedom::versionAlias($_version);
-    if ($this->getDisplay('hideOn' . $version) == 1) {
-      return '';
-    }
-
-    foreach ($this->getCmd('info') as $cmd) {
-      $replace['#' . $cmd->getLogicalId() . '_history#'] = '';
-      $replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
-      $replace['#' . $cmd->getLogicalId() . '#'] = $cmd->execCmd();
-      $replace['#' . $cmd->getLogicalId() . '_collect#'] = $cmd->getCollectDate();
-      if ($cmd->getIsHistorized() == 1) {
-        $replace['#' . $cmd->getLogicalId() . '_history#'] = 'history cursor';
-      }
-    }
-    return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, 'apcups', 'apcups')));
   }
 
   /**
@@ -357,7 +332,6 @@ class apcups extends eqLogic {
 }
 
 class apcupsCmd extends cmd {
-
 }
 
 ?>
