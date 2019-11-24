@@ -20,38 +20,13 @@ require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
 
 function apcups_install() {
-    $cron = cron::byClassAndFunction('apcups', 'pull');
-    if (!is_object($cron)) {
-        $cron = new cron();
-        $cron->setClass('apcups');
-        $cron->setFunction('pull');
-        $cron->setEnable(1);
-        $cron->setDeamon(0);
-        $cron->setSchedule('*/2 * * * *');
-        $cron->save();
-    }
-    if (!is_object(eqlogic::byLogicalId('127.0.0.1', 'apcups'))) {
-        $local = new apcups();
-        $local->setEqType_name('apcups');
-        $local->setConfiguration('addr', '127.0.0.1');
-        $local->setConfiguration('port', '3551');
-        $local->setName('Onduleur USB');
-        $local->setIsEnable(true);
-        $local->save();
-	}
 
 }
 
 function apcups_update() {
     $cron = cron::byClassAndFunction('apcups', 'pull');
-    if (!is_object($cron)) {
-        $cron = new cron();
-        $cron->setClass('apcups');
-        $cron->setFunction('pull');
-        $cron->setEnable(1);
-        $cron->setDeamon(0);
-        $cron->setSchedule('*/2 * * * *');
-        $cron->save();
+    if (is_object($cron)) {
+        $cron->remove();
     }
 }
 
