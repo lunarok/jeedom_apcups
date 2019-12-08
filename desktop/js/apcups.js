@@ -25,11 +25,24 @@ function addCmdToTable(_cmd) {
       var tr = '<tr class="cmd" data-cmd_id="' + init(_cmd.id) + '">';
       tr += '<td>';
       tr += '<span class="cmdAttr" data-l1key="id"></span>';
+      tr += '<input class="cmdAttr form-control input-sm" data-l1key="type" style="display : none;">';
+      tr += '<input class="cmdAttr form-control input-sm" data-l1key="subType" style="display : none;">';
       tr += '</td><td>';
+      tr += '<div class="col-sm-3">';
+      tr += '<a class="cmdAction btn btn-default btn-sm" data-l1key="chooseIcon"><i class="fas fa-flag"></i> Icône</a>';
+      tr += '<span class="cmdAttr" data-l1key="display" data-l2key="icon" style="margin-left : 10px;"></span>';
+      tr += '</div>';
+      tr += '<div class="col-sm-4">';
       tr += '<input class="cmdAttr form-control input-sm" data-l1key="name" style="width : 140px;" placeholder="{{Nom de la commande}}"></td>';
+      tr += '</div>';
       tr += '</td><td>';
-      if (_cmd.subType == 'numeric' || _cmd.subType == 'binary') {
-        tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span>';
+      tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isHistorized" checked/>{{Historiser}}</label></span> ';
+      tr += '<span><label class="checkbox-inline"><input type="checkbox" class="cmdAttr checkbox-inline" data-l1key="isVisible" />{{Afficher}}</label></span> ';
+      tr += '</td><td>';
+      if (_cmd.subType == 'numeric') {
+        tr += '<input class="cmdAttr form-control input-sm" data-l1key="unite" placeholder="Unité" title="{{Unité}}">';
+        tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="minValue" placeholder="{{Min}}" title="{{Min}}" style="margin-top : 5px;"> ';
+        tr += '<input class="cmdAttr form-control input-sm" data-l1key="configuration" data-l2key="maxValue" placeholder="{{Max}}" title="{{Max}}" style="margin-top : 5px;">';
       }
       tr += '</td><td>';
       if (is_numeric(_cmd.id)) {
