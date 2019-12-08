@@ -95,7 +95,7 @@ class apcups extends eqLogic {
       $apcupsCmd->setEqLogic_id($this->id);
       $apcupsCmd->setLogicalId('status');
       $apcupsCmd->setType('info');
-      $apcupsCmd->setSubType('other');
+      $apcupsCmd->setSubType('string');
       $apcupsCmd->save();
     }
 
@@ -107,7 +107,7 @@ class apcups extends eqLogic {
       $apcupsCmd->setEqLogic_id($this->id);
       $apcupsCmd->setLogicalId('event');
       $apcupsCmd->setType('info');
-      $apcupsCmd->setSubType('other');
+      $apcupsCmd->setSubType('string');
       $apcupsCmd->save();
     }
 
@@ -158,7 +158,7 @@ class apcups extends eqLogic {
       $apcupsCmd->setEqLogic_id($this->id);
       $apcupsCmd->setLogicalId('model');
       $apcupsCmd->setType('info');
-      $apcupsCmd->setSubType('other');
+      $apcupsCmd->setSubType('string');
       $apcupsCmd->save();
     }
 

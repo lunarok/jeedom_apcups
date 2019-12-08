@@ -28,6 +28,15 @@ function apcups_update() {
     if (is_object($cron)) {
         $cron->remove();
     }
+
+    try {
+        foreach (cmd::byTypeSubType('info', 'other') as $cmd) {
+            $cmd->setSubType('string');
+            $cmd->save();
+        }
+    } catch (Exception $e) {
+        log::add('apcups', 'error', $e->getMessage());
+    }
 }
 
 function apcups_remove() {

@@ -38,7 +38,7 @@ $eqLogics = eqLogic::byType('apcups');
         $opacity = ($eqLogic->getIsEnable()) ? '' : jeedom::getConfiguration('eqLogic:style:noactive');
         echo '<div class="eqLogicDisplayCard cursor" data-eqLogic_id="' . $eqLogic->getId() . '" style="background-color : #ffffff ; height : 200px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;' . $opacity . '" >';
         echo "<center>";
-        echo '<img src="plugins/apcups/doc/images/APC-UPS_icon.png" height="105" width="95" />';
+        echo '<img src="' . $eqLogic->getImage() . '" height="105" width="95" />';
         echo "</center>";
         echo '<span style="font-size : 1.1em;position:relative; top : 15px;word-break: break-all;white-space: pre-wrap;word-wrap: break-word;"><center>' . $eqLogic->getHumanName(true, true) . '</center></span>';
         echo '</div>';
@@ -53,7 +53,7 @@ $eqLogics = eqLogic::byType('apcups');
  <a class="btn btn-default eqLogicAction pull-right" data-action="configure"><i class="fas fa-cogs"></i> {{Configuration avancée}}</a>
  <ul class="nav nav-tabs" role="tablist">
   <li role="presentation"><a href="#" class="eqLogicAction" aria-controls="home" role="tab" data-toggle="tab" data-action="returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
-  <li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer"></i> {{Equipement}}</a></li>
+  <li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Equipement}}</a></li>
   <li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Commandes}}</a></li>
 </ul>
 <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
@@ -131,6 +131,7 @@ $eqLogics = eqLogic::byType('apcups');
               <th style="width: 50px;">#</th>
               <th style="width: 300px;">{{Nom}}</th>
               <th style="width: 200px;">{{Paramètres}}</th>
+              <th style="width: 100px;">{{Options}}</th>
               <th style="width: 100px;"></th>
             </tr>
           </thead>
