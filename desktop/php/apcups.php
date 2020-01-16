@@ -41,7 +41,7 @@ $eqLogics = eqLogic::byType('apcups');
 
     <input class="form-control" placeholder="{{Rechercher}}" id="in_searchEqlogic" />
 
-    <legend><i class="fas fa-home" id="butCol"></i> {{Mes Lumières}}</legend>
+    <legend><i class="fas fa-home" id="butCol"></i> {{Mes Equipements}}</legend>
     <div class="eqLogicThumbnailContainer">
       <?php
       foreach ($eqLogics as $eqLogic) {
