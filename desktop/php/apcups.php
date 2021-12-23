@@ -12,7 +12,7 @@ $eqLogics = eqLogic::byType('apcups');
   <div class="col-lg-2 col-sm-3 col-sm-4" id="hidCol" style="display: none;">
     <div class="bs-sidebar">
       <ul id="ul_eqLogic" class="nav nav-list bs-sidenav">
-        <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
+        <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%" /></li>
         <?php
         foreach ($eqLogics as $eqLogic) {
           echo '<li class="cursor li_eqLogic" data-eqLogic_id="' . $eqLogic->getId() . '"><a>' . $eqLogic->getHumanName(true) . '</a></li>';
@@ -23,17 +23,17 @@ $eqLogics = eqLogic::byType('apcups');
   </div>
 
   <div class="col-lg-12 eqLogicThumbnailDisplay" id="listCol">
-    <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
+    <legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
     <div class="eqLogicThumbnailContainer logoPrimary">
 
       <div class="cursor eqLogicAction" data-action="add">
-          <i class="fas fa-plus-circle"></i>
-          <br/>
+        <i class="fas fa-plus-circle"></i>
+        <br />
         <span>{{Ajouter}}</span>
       </div>
       <div class="cursor eqLogicAction logoSecondary" data-action="gotoPluginConf">
         <i class="fas fa-wrench"></i>
-        <br/>
+        <br />
         <span>{{Configuration}}</span>
       </div>
 
@@ -57,28 +57,28 @@ $eqLogics = eqLogic::byType('apcups');
     </div>
   </div>
 
- <div class="col-lg-10 col-md-9 col-sm-8 eqLogic" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
- <a class="btn btn-success eqLogicAction pull-right" data-action="save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
- <a class="btn btn-danger eqLogicAction pull-right" data-action="remove"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
- <a class="btn btn-default eqLogicAction pull-right" data-action="configure"><i class="fas fa-cogs"></i> {{Configuration avancée}}</a>
- <ul class="nav nav-tabs" role="tablist">
-  <li role="presentation"><a href="#" class="eqLogicAction" aria-controls="home" role="tab" data-toggle="tab" data-action="returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
-  <li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Equipement}}</a></li>
-  <li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Commandes}}</a></li>
-</ul>
-<div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
-  <div role="tabpanel" class="tab-pane active" id="eqlogictab">
+  <div class="col-lg-10 col-md-9 col-sm-8 eqLogic" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
+    <a class="btn btn-success eqLogicAction pull-right" data-action="save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+    <a class="btn btn-danger eqLogicAction pull-right" data-action="remove"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+    <a class="btn btn-default eqLogicAction pull-right" data-action="configure"><i class="fas fa-cogs"></i> {{Configuration avancée}}</a>
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation"><a href="#" class="eqLogicAction" aria-controls="home" role="tab" data-toggle="tab" data-action="returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
+      <li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Equipement}}</a></li>
+      <li role="presentation"><a href="#commandtab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Commandes}}</a></li>
+    </ul>
+    <div class="tab-content" style="height:calc(100% - 50px);overflow:auto;overflow-x: hidden;">
+      <div role="tabpanel" class="tab-pane active" id="eqlogictab">
         <form class="form-horizontal">
           <fieldset>
             <div class="form-group">
               <label class="col-sm-3 control-label">{{Onduleur APC}}</label>
               <div class="col-sm-3">
                 <input type="text" class="eqLogicAttr form-control" data-l1key="id" style="display : none;" />
-                <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement apcups}}"/>
+                <input type="text" class="eqLogicAttr form-control" data-l1key="name" placeholder="{{Nom de l'équipement apcups}}" />
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-3 control-label" >{{Objet parent}}</label>
+              <label class="col-sm-3 control-label">{{Objet parent}}</label>
               <div class="col-sm-3">
                 <select class="form-control eqLogicAttr" data-l1key="object_id">
                   <option value="">{{Aucun}}</option>
@@ -104,29 +104,29 @@ $eqLogics = eqLogic::byType('apcups');
               </div>
             </div>
             <div class="form-group">
-              <label class="col-sm-3 control-label" ></label>
+              <label class="col-sm-3 control-label"></label>
               <div class="col-sm-8">
-                <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
-                <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
+                <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked />{{Activer}}</label>
+                <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked />{{Visible}}</label>
               </div>
             </div>
 
             <div class="form-group">
               <label class="col-sm-3 control-label">{{Adresse apcupsd}}</label>
               <div class="col-sm-3">
-                <input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="addr" placeholder="ex : 127.0.0.1"/>
+                <input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="addr" placeholder="ex : 127.0.0.1" />
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3 control-label">{{Port apcupsd}}</label>
               <div class="col-sm-3">
-                <input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="port" placeholder="ex : 3551"/>
+                <input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="port" placeholder="ex : 3551" />
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3 control-label">{{Puissance de l'onduleur}}</label>
               <div class="col-sm-3">
-                <input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="puissance" placeholder="ex : 550 pour un Back-UPS ES 550G"/>
+                <input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="puissance" placeholder="ex : 550 pour un Back-UPS ES 550G" />
               </div>
             </div>
 
