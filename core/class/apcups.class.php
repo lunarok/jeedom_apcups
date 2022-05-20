@@ -28,7 +28,7 @@ class apcups extends eqLogic {
         'state' => true,
       );
     } else {
-      $pid = trim( shell_exec ('ps ax | grep "apcups" | grep -v "grep" | wc -l') );
+      $pid = trim(shell_exec('ps ax | grep "apcups" | grep -v "grep" | wc -l'));
       if ($pid != '' && $pid != '0') {
         $service = true;
       } else {
@@ -60,25 +60,25 @@ class apcups extends eqLogic {
   public static function dependancy_install() {
     $install_path = dirname(__FILE__) . '/../../resources';
     if (!config::byKey('internalPort')) {
-      $url = 'http://127.0.0.1' . config::byKey('internalComplement') . '/core/api/jeeApi.php?api=' . config::byKey('api');
+      $url = 'http://127.0.0.1' . config::byKey('internalComplement') . '/core/api/jeeApi.php?api=' . config::byKey('api', __CLASS__);
     } else {
-      $url = 'http://127.0.0.1:' . config::byKey('internalPort') . config::byKey('internalComplement') . '/core/api/jeeApi.php?api=' . config::byKey('api');
+      $url = 'http://127.0.0.1:' . config::byKey('internalPort') . config::byKey('internalComplement') . '/core/api/jeeApi.php?api=' . config::byKey('api', __CLASS__);
     }
     passthru('sudo /bin/bash ' . $install_path . '/install.sh ' . $install_path . ' ' . $url . ' > ' . log::getPathToLog('apcups_dep') . ' 2>&1 &');
   }
 
   public static function cron() {
-    foreach (eqLogic::byType('apcups',true) as $apcups) {
+    foreach (eqLogic::byType('apcups', true) as $apcups) {
       $apcups->updateCommands();
     }
   }
 
   public function preUpdate() {
     if ($this->getConfiguration('addr') == '') {
-      throw new Exception(__('L\'adresse ne peut etre vide',__FILE__));
+      throw new Exception(__('L\'adresse ne peut etre vide', __FILE__));
     }
     if ($this->getConfiguration('port') == '') {
-      throw new Exception(__('Le port ne peut etre vide',__FILE__));
+      throw new Exception(__('Le port ne peut etre vide', __FILE__));
     }
   }
 
@@ -120,7 +120,7 @@ class apcups extends eqLogic {
       $apcupsCmd->setLogicalId('timeleft');
       $apcupsCmd->setType('info');
       $apcupsCmd->setSubType('numeric');
-      $apcupsCmd->setUnite( 'mn' );
+      $apcupsCmd->setUnite('mn');
       $apcupsCmd->save();
     }
 
@@ -133,7 +133,7 @@ class apcups extends eqLogic {
       $apcupsCmd->setLogicalId('linev');
       $apcupsCmd->setType('info');
       $apcupsCmd->setSubType('numeric');
-      $apcupsCmd->setUnite( 'V' );
+      $apcupsCmd->setUnite('V');
       $apcupsCmd->save();
     }
 
@@ -146,7 +146,7 @@ class apcups extends eqLogic {
       $apcupsCmd->setLogicalId('battv');
       $apcupsCmd->setType('info');
       $apcupsCmd->setSubType('numeric');
-      $apcupsCmd->setUnite( 'V' );
+      $apcupsCmd->setUnite('V');
       $apcupsCmd->save();
     }
 
@@ -171,7 +171,7 @@ class apcups extends eqLogic {
       $apcupsCmd->setLogicalId('loadpct');
       $apcupsCmd->setType('info');
       $apcupsCmd->setSubType('numeric');
-      $apcupsCmd->setUnite( '%' );
+      $apcupsCmd->setUnite('%');
       $apcupsCmd->save();
     }
 
@@ -184,7 +184,7 @@ class apcups extends eqLogic {
       $apcupsCmd->setLogicalId('bcharge');
       $apcupsCmd->setType('info');
       $apcupsCmd->setSubType('numeric');
-      $apcupsCmd->setUnite( '%' );
+      $apcupsCmd->setUnite('%');
       $apcupsCmd->save();
     }
 
@@ -197,9 +197,9 @@ class apcups extends eqLogic {
       $apcupsCmd->setLogicalId('outpower');
       $apcupsCmd->setType('info');
       $apcupsCmd->setSubType('numeric');
-      $apcupsCmd->setUnite( 'W' );
+      $apcupsCmd->setUnite('W');
     }
-    $apcupsCmd->setDisplay('generic_type','POWER');
+    $apcupsCmd->setDisplay('generic_type', 'POWER');
     $apcupsCmd->save();
 
     $this->updateCommands();
@@ -235,22 +235,22 @@ class apcups extends eqLogic {
         continue;
       }
       $info = explode(':', $row, 2);
-  	  if (count($info) != 2) {
+      if (count($info) != 2) {
         log::add('apcups', 'debug', "The information row $row is not parsable");
         continue;
       }
-  	  $key = trim($info[0]);
-  	  $value = trim($info[1]);
+      $key = trim($info[0]);
+      $value = trim($info[1]);
       preg_match('/(?P<float>(?P<integer>\d+)(\.\d+)?)/', $value, $matches);
       preg_match('/(?P<word>[a-zA-Z0-9_.-]+)/', $value, $matches_word);
-  	  $informations[$key] = [
+      $informations[$key] = [
         'raw' => $value,
         'integer' => isset($matches['integer']) ? $matches['integer'] : null,
         'float' => isset($matches['float']) ? $matches['float'] : null,
         'word' => isset($matches_word['word']) ? $matches_word['word'] : null
       ];
       log::add('apcups', 'debug', "Get information key $key with value $value");
-	}
+    }
 
     return $informations;
   }
@@ -259,8 +259,8 @@ class apcups extends eqLogic {
    * Update all command of this equipment with new informations
    */
   protected function updateCommands() {
-	$informations = $this->getInformations();
-	$puissance = $this->getConfiguration('puissance', '');
+    $informations = $this->getInformations();
+    $puissance = $this->getConfiguration('puissance', '');
 
     # loop for each command and update its infos according to some specific case
     foreach ($this->getCmd('info') as $cmd) {
@@ -296,7 +296,7 @@ class apcups extends eqLogic {
           break;
       }
 
-      if($cmd->getLogicalId() == 'bcharge') {
+      if ($cmd->getLogicalId() == 'bcharge') {
         log::add('apcups', 'debug', ' => update battery status');
         $this->batteryStatus($value);
       }
@@ -325,13 +325,13 @@ class apcups extends eqLogic {
     $messageType = init('messagetype');
     log::add('apcups', 'info', 'event');
     switch ($messageType) {
-      case 'saveEvent' : log::add('apcups', 'info', 'event'); self::saveEvent(); break;
+      case 'saveEvent':
+        log::add('apcups', 'info', 'event');
+        self::saveEvent();
+        break;
     }
   }
-
 }
 
 class apcupsCmd extends cmd {
 }
-
-?>

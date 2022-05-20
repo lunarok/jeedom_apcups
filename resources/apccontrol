@@ -29,7 +29,7 @@ export SYSADMIN=root
 export APCUPSD_MAIL="mail"
 if [ -f $SCRIPTDIR/config ]; then . $SCRIPTDIR/config ; fi
 
-wget --no-check-certificate -qO- "#URL#&messagetype=saveEvent&type=apcups&hostname=127.0.0.1&event=$1"
+wget --no-check-certificate -qO- "#URL#&messagetype=saveEvent&type=event&plugin=apcups&hostname=127.0.0.1&event=$1"
 
 #
 # Concatenate all output from this script to the events file
@@ -45,7 +45,7 @@ wget --no-check-certificate -qO- "#URL#&messagetype=saveEvent&type=apcups&hostna
 # passed by apcupsd to this script.
 #
 # After executing your script, apccontrol continues with the default action.
-# If you do not want apccontrol to continue, exit your script with exit 
+# If you do not want apccontrol to continue, exit your script with exit
 # code 99. E.g. "exit 99".
 #
 # WARNING: the apccontrol file will be overwritten every time you update your
