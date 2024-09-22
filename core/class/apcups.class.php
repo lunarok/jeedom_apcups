@@ -295,13 +295,14 @@ class apcups extends eqLogic {
           }
           break;
       }
-
-      if ($cmd->getLogicalId() == 'bcharge') {
-        log::add('apcups', 'debug', ' => update battery status');
-        $this->batteryStatus($value);
+      if (isset($value)) { // php8 compatibility
+        if ($cmd->getLogicalId() == 'bcharge') {
+          log::add('apcups', 'debug', ' => update battery status');
+          $this->batteryStatus($value);
+        }
+        log::add('apcups', 'debug', ' => update command ' . $cmd->getLogicalId() . ' with ' . $value);
+        $this->checkAndUpdateCmd($cmd->getLogicalId(), $value);
       }
-      log::add('apcups', 'debug', ' => update command ' . $cmd->getLogicalId() . ' with ' . $value);
-      $this->checkAndUpdateCmd($cmd->getLogicalId(), $value);
     }
 
     $this->refreshWidget();
